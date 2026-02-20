@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+:root {
+  --gold: #c9a84c;
+  --gold-light: #e8d59a;
+  --indigo: #1a1a3e;
+  --indigo-light: #2a2a5e;
+  --cream: #f5f0e8;
+  --cream-dark: #e8e0d0;
+  --soft-white: #fafaf7;
+  --text-dark: #1a1a2e;
+  --text-muted: #6b7280;
+  
+  /* Tradition colors */
+  --judaism: #2a5db0;
+  --christianity: #8b2332;
+  --islam: #1a7a4c;
+  --buddhism: #d4832f;
+  --hinduism: #d45c00;
+  --sikhism: #1c3f94;
+  --taoism: #2a2a2a;
+  --sufism: #6b4f8a;
+  --indigenous: #6b4226;
+  --five-percent: #d4af37;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f0f1a;
+    --bg-card: #1a1a2e;
+    --text: #e8e4dc;
+    --text-muted: #9ca3af;
+    --border: #2a2a4e;
+  }
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  background: var(--cream);
+  color: var(--text-dark);
+}
+
+.dark body {
+  background: #0f0f1a;
+  color: #e8e4dc;
+}
+
+/* Sacred text reading font */
+.font-sacred {
+  font-family: 'Georgia', 'Palatino Linotype', 'Book Antiqua', serif;
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+}
+
+/* UI font */
+.font-ui {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Tradition accent borders */
+.tradition-judaism { border-left: 3px solid var(--judaism); }
+.tradition-christianity { border-left: 3px solid var(--christianity); }
+.tradition-islam { border-left: 3px solid var(--islam); }
+.tradition-buddhism { border-left: 3px solid var(--buddhism); }
+.tradition-hinduism { border-left: 3px solid var(--hinduism); }
+.tradition-sikhism { border-left: 3px solid var(--sikhism); }
+.tradition-taoism { border-left: 3px solid var(--taoism); }
+.tradition-sufism { border-left: 3px solid var(--sufism); }
+
+/* Search glow */
+.search-glow {
+  box-shadow: 0 0 20px rgba(201, 168, 76, 0.15), 0 0 60px rgba(201, 168, 76, 0.05);
+}
+
+.search-glow:focus-within {
+  box-shadow: 0 0 30px rgba(201, 168, 76, 0.3), 0 0 80px rgba(201, 168, 76, 0.1);
+}
+
+/* Passage card hover */
+.passage-card {
+  transition: all 0.2s ease;
+}
+.passage-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(201, 168, 76, 0.3); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(201, 168, 76, 0.5); }

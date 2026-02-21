@@ -1,5 +1,5 @@
 import { traditions } from '@/data/passages';
-import { traditionConfigs, fetchBibleChapter, fetchQuranSurah, fetchSefariaText, type TextEntry } from '@/lib/sacred-apis';
+import { traditionConfigs, fetchBibleChapter, fetchQuranSurah, fetchSefariaText, fetchSuttaCentralText, getTaoChapterText, type TextEntry } from '@/lib/sacred-apis';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 
@@ -37,6 +37,12 @@ async function fetchTexts(traditionKey: string, bookId: string, chapter: number)
     case 'sefaria': {
       const ref = `${decodeURIComponent(bookId)}.${chapter}`;
       return fetchSefariaText(ref);
+    }
+    case 'suttacentral': {
+      return fetchSuttaCentralText(decodeURIComponent(bookId));
+    }
+    case 'tao': {
+      return getTaoChapterText(chapter);
     }
     default:
       return [];

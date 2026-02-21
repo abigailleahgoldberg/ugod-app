@@ -139,6 +139,40 @@ async function searchGita(query: string): Promise<SearchResult[]> {
   return results.slice(0, 6);
 }
 
+// Buddhist search via SuttaCentral (search key Dhammapada chapters)
+async function searchBuddhist(query: string): Promise<SearchResult[]> {
+  const results: SearchResult[] = [];
+  const q = query.toLowerCase();
+  const dhpChapters = ['dhp1-20', 'dhp21-32', 'dhp33-43', 'dhp44-59', 'dhp60-75', 'dhp76-89', 'dhp179-196', 'dhp273-289'];
+
+  const fetches = dhpChapters.slice(0, 4).map(async (uid) => {
+    try {
+      const res = await fetch(`https://suttacentral.net/api/bilarasuttas/${uid}/sujato`, { next: { revalidate: 86400 } });
+      if (!res.ok) return [];
+      const data = await res.json();
+      const texts = data.translation_text || {};
+      return Object.entries(texts)
+        .filter(([_, text]) => text && (text as string).toLowerCase().includes(q))
+        .slice(0, 3)
+        .map(([key, text]) => ({
+          id: `sc-${uid}-${key}`,
+          text: (text as string).replace(/<[^>]*>/g, '').trim(),
+          reference: `Dhammapada — ${key}`,
+          tradition: 'Buddhism',
+          traditionKey: 'buddhism',
+          emoji: '☸️',
+          color: '#d4832f',
+          book: 'Dhammapada',
+          url: `/library/buddhism/${uid}`,
+        }));
+    } catch { return []; }
+  });
+
+  const allResults = await Promise.all(fetches);
+  allResults.forEach(r => results.push(...r));
+  return results.slice(0, 8);
+}
+
 export async function GET(request: NextRequest) {
   const q = request.nextUrl.searchParams.get('q');
   if (!q || q.trim().length < 2) {
@@ -148,15 +182,16 @@ export async function GET(request: NextRequest) {
   const query = q.trim();
 
   // Run all searches in parallel
-  const [bibleResults, quranResults, sefariaResults, gitaResults] = await Promise.all([
+  const [bibleResults, quranResults, sefariaResults, gitaResults, buddhistResults] = await Promise.all([
     searchBible(query).catch(() => []),
     searchQuran(query).catch(() => []),
     searchSefaria(query).catch(() => []),
     searchGita(query).catch(() => []),
+    searchBuddhist(query).catch(() => []),
   ]);
 
   // Interleave results from different traditions for variety
-  const all = [...quranResults, ...sefariaResults, ...bibleResults, ...gitaResults];
+  const all = [...quranResults, ...sefariaResults, ...bibleResults, ...gitaResults, ...buddhistResults];
 
   // Dedupe and limit
   const seen = new Set<string>();
@@ -175,6 +210,7 @@ export async function GET(request: NextRequest) {
       islam: quranResults.length,
       judaism: sefariaResults.length,
       hinduism: gitaResults.length,
+      buddhism: buddhistResults.length,
     },
     total: unique.length,
   });

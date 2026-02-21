@@ -1,94 +1,403 @@
 @import "tailwindcss";
 
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
 :root {
   --gold: #c9a84c;
   --gold-light: #e8d59a;
-  --indigo: #1a1a3e;
-  --indigo-light: #2a2a5e;
-  --cream: #f5f0e8;
-  --cream-dark: #e8e0d0;
-  --soft-white: #fafaf7;
-  --text-dark: #1a1a2e;
-  --text-muted: #6b7280;
-  
-  /* Tradition colors */
-  --judaism: #2a5db0;
-  --christianity: #8b2332;
-  --islam: #1a7a4c;
-  --buddhism: #d4832f;
-  --hinduism: #d45c00;
-  --sikhism: #1c3f94;
-  --taoism: #2a2a2a;
-  --sufism: #6b4f8a;
-  --indigenous: #6b4226;
-  --five-percent: #d4af37;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0f0f1a;
-    --bg-card: #1a1a2e;
-    --text: #e8e4dc;
-    --text-muted: #9ca3af;
-    --border: #2a2a4e;
-  }
+  --gold-glow: rgba(201, 168, 76, 0.15);
+  --indigo: #0d0d1f;
+  --indigo-mid: #151530;
+  --indigo-light: #1e1e42;
+  --cream: #faf8f3;
+  --cream-warm: #f5f0e6;
+  --parchment: #eee8d8;
+  --text-primary: #1a1a2e;
+  --text-secondary: #555568;
+  --text-muted: #8888a0;
 }
 
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Georgia', 'Times New Roman', serif;
+  font-family: 'Inter', -apple-system, sans-serif;
   background: var(--cream);
-  color: var(--text-dark);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
 }
 
-.dark body {
-  background: #0f0f1a;
-  color: #e8e4dc;
-}
-
-/* Sacred text reading font */
+/* Sacred reading font */
 .font-sacred {
-  font-family: 'Georgia', 'Palatino Linotype', 'Book Antiqua', serif;
-  line-height: 1.8;
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  line-height: 1.85;
   letter-spacing: 0.01em;
 }
 
-/* UI font */
-.font-ui {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+.font-display {
+  font-family: 'Playfair Display', 'Georgia', serif;
 }
 
-/* Tradition accent borders */
-.tradition-judaism { border-left: 3px solid var(--judaism); }
-.tradition-christianity { border-left: 3px solid var(--christianity); }
-.tradition-islam { border-left: 3px solid var(--islam); }
-.tradition-buddhism { border-left: 3px solid var(--buddhism); }
-.tradition-hinduism { border-left: 3px solid var(--hinduism); }
-.tradition-sikhism { border-left: 3px solid var(--sikhism); }
-.tradition-taoism { border-left: 3px solid var(--taoism); }
-.tradition-sufism { border-left: 3px solid var(--sufism); }
-
-/* Search glow */
-.search-glow {
-  box-shadow: 0 0 20px rgba(201, 168, 76, 0.15), 0 0 60px rgba(201, 168, 76, 0.05);
+/* ===== HERO GRADIENT ===== */
+.hero-gradient {
+  background: 
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201, 168, 76, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 40% at 80% 20%, rgba(100, 80, 160, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 40% at 20% 30%, rgba(50, 80, 180, 0.05) 0%, transparent 50%),
+    linear-gradient(180deg, #0a0a1a 0%, #0d0d24 40%, #111130 100%);
 }
 
-.search-glow:focus-within {
-  box-shadow: 0 0 30px rgba(201, 168, 76, 0.3), 0 0 80px rgba(201, 168, 76, 0.1);
+/* ===== SEARCH BAR ===== */
+.search-container {
+  position: relative;
+  max-width: 680px;
+  margin: 0 auto;
 }
 
-/* Passage card hover */
-.passage-card {
-  transition: all 0.2s ease;
+.search-bar {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(201, 168, 76, 0.15);
+  border-radius: 20px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 0 0 0 rgba(201, 168, 76, 0),
+    0 4px 30px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
-.passage-card:hover {
+
+.search-bar:focus-within {
+  border-color: rgba(201, 168, 76, 0.4);
+  background: rgba(255, 255, 255, 0.09);
+  box-shadow: 
+    0 0 40px rgba(201, 168, 76, 0.12),
+    0 0 80px rgba(201, 168, 76, 0.05),
+    0 8px 40px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+.search-bar input {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+.search-bar input::placeholder {
+  font-style: italic;
+  opacity: 0.5;
+}
+
+/* ===== GLASS CARDS ===== */
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(201, 168, 76, 0.2);
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
 }
 
-/* Scrollbar */
-::-webkit-scrollbar { width: 8px; }
+/* ===== CREAM CARDS ===== */
+.cream-card {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.cream-card:hover {
+  border-color: rgba(201, 168, 76, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.06),
+    0 0 0 1px rgba(201, 168, 76, 0.1);
+}
+
+/* ===== TRADITION PILLS ===== */
+.tradition-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: white;
+}
+
+/* ===== THEME TAGS ===== */
+.theme-tag {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: var(--cream-warm);
+  letter-spacing: 0.02em;
+}
+
+/* ===== CROSS-REF BADGE ===== */
+.crossref-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 10px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gold);
+  background: rgba(201, 168, 76, 0.08);
+  letter-spacing: 0.02em;
+}
+
+/* ===== TRADITION GRID ===== */
+.tradition-tile {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
+  padding: 24px 16px;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.tradition-tile::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, var(--tile-color, transparent) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tradition-tile:hover::before { opacity: 0.06; }
+
+.tradition-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08);
+  border-color: rgba(201, 168, 76, 0.2);
+}
+
+.tradition-tile .emoji {
+  font-size: 36px;
+  margin-bottom: 8px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+/* ===== BLOCKQUOTE ===== */
+.sacred-quote {
+  position: relative;
+  padding-left: 24px;
+  border-left: 2px solid var(--gold);
+}
+
+.sacred-quote::before {
+  content: '\201C';
+  position: absolute;
+  top: -12px;
+  left: -8px;
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  color: var(--gold);
+  opacity: 0.3;
+  line-height: 1;
+}
+
+/* ===== DAILY VERSE CARD ===== */
+.daily-card {
+  background: white;
+  border-radius: 24px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 
+    0 4px 6px rgba(0, 0, 0, 0.02),
+    0 20px 60px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.daily-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), #d4a03c, var(--gold));
+}
+
+/* ===== STATS ===== */
+.stat-number {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: 42px;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--gold) 0%, #b8943f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== SECTION DIVIDER ===== */
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0 auto;
+  max-width: 200px;
+}
+
+.section-divider::before,
+.section-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+/* ===== MODAL ===== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(10, 10, 26, 0.7);
+  backdrop-filter: blur(8px);
+}
+
+.modal-content {
+  background: white;
+  border-radius: 24px;
+  max-width: 640px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.25);
+}
+
+/* ===== BUTTON STYLES ===== */
+.btn-primary {
+  background: var(--indigo);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 14px 28px;
+  border-radius: 14px;
+  letter-spacing: 0.02em;
+  transition: all 0.2s;
+  border: 1px solid rgba(201, 168, 76, 0.15);
+}
+
+.btn-primary:hover {
+  background: var(--indigo-light);
+  box-shadow: 0 8px 30px rgba(13, 13, 31, 0.3);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: var(--cream-warm);
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 14px 28px;
+  border-radius: 14px;
+  letter-spacing: 0.02em;
+  transition: all 0.2s;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.btn-secondary:hover {
+  background: var(--parchment);
+  transform: translateY(-1px);
+}
+
+/* ===== FLOATING SYMBOLS ===== */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.04; }
+  50% { transform: translateY(-20px) rotate(5deg); opacity: 0.07; }
+}
+
+@keyframes float-medium {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.03; }
+  50% { transform: translateY(-15px) rotate(-3deg); opacity: 0.06; }
+}
+
+.float-symbol {
+  position: absolute;
+  animation: float-slow 8s ease-in-out infinite;
+  pointer-events: none;
+  user-select: none;
+}
+
+.float-symbol:nth-child(even) {
+  animation: float-medium 10s ease-in-out infinite;
+}
+
+/* ===== SUGGESTION PILLS ===== */
+.suggestion-pill {
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.suggestion-pill:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(201, 168, 76, 0.3);
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(201, 168, 76, 0.3); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(201, 168, 76, 0.5); }
+::-webkit-scrollbar-thumb { background: rgba(201, 168, 76, 0.2); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(201, 168, 76, 0.4); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .stat-number { font-size: 32px; }
+  .sacred-quote::before { display: none; }
+}
+
+/* ===== NAV ===== */
+.nav-glass {
+  background: rgba(250, 248, 243, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+}
+
+.nav-link {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+  transition: color 0.2s;
+  text-transform: uppercase;
+}
+
+.nav-link:hover { color: var(--gold); }
+
+/* ===== FOOTER ===== */
+.footer-bg {
+  background: linear-gradient(180deg, var(--indigo) 0%, #080814 100%);
+}

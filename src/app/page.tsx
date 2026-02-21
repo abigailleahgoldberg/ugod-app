@@ -116,8 +116,10 @@ export default function Home() {
           </div>
 
           {/* Headline */}
-          <h1 className="font-display text-5xl sm:text-7xl font-bold text-white mb-6 leading-[1.1] tracking-tight">
-            The World&apos;s Sacred Texts,<br/>
+          <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-[1.1] tracking-tight whitespace-nowrap">
+            The World&apos;s Sacred Texts,
+          </h1>
+          <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-[1.1] tracking-tight">
             <span className="bg-gradient-to-r from-[#c9a84c] via-[#e8d59a] to-[#c9a84c] bg-clip-text text-transparent">Beautifully Connected</span>
           </h1>
 

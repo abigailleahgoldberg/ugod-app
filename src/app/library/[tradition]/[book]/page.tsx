@@ -4,10 +4,28 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { VerseActions, SpeakAll } from '@/components/VerseActions';
 import { CrossRefs } from '@/components/CrossRefs';
+import type { Metadata } from 'next';
 
 interface Props {
   params: Promise<{ tradition: string; book: string }>;
   searchParams: Promise<{ chapter?: string }>;
+}
+
+export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
+  const { tradition: traditionKey, book: bookId } = await params;
+  const { chapter: chapterParam } = await searchParams;
+  const chapter = parseInt(chapterParam || '1');
+  const tradition = traditions.find(t => t.key === traditionKey);
+  if (!tradition) return {};
+  
+  const bookName = decodeURIComponent(bookId).replace(/_/g, ' ').replace(/([a-z])([A-Z])/g, '$1 $2');
+  const displayName = bookName.charAt(0).toUpperCase() + bookName.slice(1);
+  
+  return {
+    title: `${displayName} Chapter ${chapter} — Read ${tradition.name} Text Online Free`,
+    description: `Read ${displayName} Chapter ${chapter} from ${tradition.name} online for free. Verse-by-verse with audio, bookmarks, and cross-tradition references. ${tradition.description}.`,
+    alternates: { canonical: `https://u-god.com/library/${traditionKey}/${bookId}?chapter=${chapter}` },
+  };
 }
 
 async function fetchTexts(traditionKey: string, bookId: string, chapter: number): Promise<TextEntry[]> {

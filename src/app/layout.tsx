@@ -2,28 +2,37 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: "U-God — The World's Sacred Texts, Beautifully Connected",
-  description: 'Explore sacred texts from 25+ world traditions. Search across Christianity, Islam, Judaism, Buddhism, Hinduism, Taoism and more. Discover what connects humanity across 5,000 years of spiritual wisdom.',
+  title: {
+    default: 'Read Sacred Texts Online Free — Bible, Quran, Torah, Gita & More | U-God',
+    template: '%s | U-God — Sacred Texts Online',
+  },
+  description: 'Read sacred texts from 25+ world religions online for free. Search the Bible, Quran, Torah, Bhagavad Gita, Dhammapada, Guru Granth Sahib, Tao Te Ching and more. Cross-tradition connections, daily verses, and audio.',
   metadataBase: new URL('https://u-god.com'),
+  keywords: ['sacred texts online', 'read bible online', 'read quran online', 'torah online', 'bhagavad gita', 'dhammapada', 'world religions', 'religious texts', 'compare religions', 'interfaith', 'spiritual wisdom', 'sacred scripture', 'guru granth sahib', 'tao te ching', 'cross-reference religions'],
+  authors: [{ name: 'U-God' }],
+  creator: 'U-God',
+  robots: { index: true, follow: true },
+  alternates: { canonical: 'https://u-god.com' },
   openGraph: {
-    title: "U-God — The World's Sacred Texts, Beautifully Connected",
-    description: '25+ traditions. 5,000+ texts. One library. Read across Christianity, Islam, Judaism, Buddhism, Hinduism, Taoism and more.',
+    title: 'Read Sacred Texts Online Free — Bible, Quran, Torah & More | U-God',
+    description: 'The world\'s sacred texts, beautifully connected. Search across 25+ traditions. Free forever.',
     type: 'website',
     url: 'https://u-god.com',
     siteName: 'U-God',
+    locale: 'en_US',
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: "U-God — The World's Sacred Texts, Beautifully Connected",
+        alt: 'U-God — Read sacred texts from every world religion online for free',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: "U-God — The World's Sacred Texts, Beautifully Connected",
-    description: '25+ traditions. 5,000+ texts. One library. Discover what connects humanity.',
+    title: 'Read Sacred Texts Online Free — 25+ World Religions | U-God',
+    description: 'Bible, Quran, Torah, Gita, Dhammapada, Tao Te Ching & more. One search bar. Free forever.',
     images: ['/og-image.png'],
   },
 };
@@ -68,6 +77,26 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕉️</text></svg>" />
       </head>
       <body className="min-h-screen antialiased overflow-x-hidden">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              name: 'U-God',
+              url: 'https://u-god.com',
+              description: 'Read sacred texts from 25+ world religions online for free. Bible, Quran, Torah, Gita, Dhammapada, and more.',
+              potentialAction: {
+                '@type': 'SearchAction',
+                target: {
+                  '@type': 'EntryPoint',
+                  urlTemplate: 'https://u-god.com/search?q={search_term_string}',
+                },
+                'query-input': 'required name=search_term_string',
+              },
+            }),
+          }}
+        />
         <Nav />
 
         <main className="pt-14 sm:pt-16">{children}</main>

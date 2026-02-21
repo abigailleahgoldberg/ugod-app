@@ -2,9 +2,40 @@ import { traditions } from '@/data/passages';
 import { traditionConfigs, type BookEntry } from '@/lib/sacred-apis';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import type { Metadata } from 'next';
 
 interface Props {
   params: Promise<{ tradition: string }>;
+}
+
+const seoDescriptions: Record<string, string> = {
+  judaism: 'Read Jewish sacred texts online free — Torah, Talmud, Psalms, Proverbs, Pirkei Avot, and Zohar. Powered by Sefaria. Hebrew and English.',
+  christianity: 'Read the Bible online free — all 66 books, Old and New Testament, King James Version. Genesis through Revelation, verse by verse.',
+  islam: 'Read the Quran online free in English — all 114 Surahs with Muhammad Asad translation. Arabic names, verse-by-verse reading.',
+  buddhism: 'Read Buddhist texts online free — Dhammapada (full 26 chapters), key suttas from the Pali Canon. Bhikkhu Sujato translations from SuttaCentral.',
+  hinduism: 'Read the Bhagavad Gita online free — all 18 chapters of Krishna and Arjuna\'s divine dialogue. Sanskrit and English.',
+  taoism: 'Read the Tao Te Ching online free — all 81 chapters of Lao Tzu\'s wisdom on the Way, nature, and leadership.',
+  sikhism: 'Read Sri Guru Granth Sahib online free — all 1,430 Angs (pages) in Gurmukhi and English. Powered by GurbaniNow.',
+  confucianism: 'Read the Analects of Confucius online free — collected sayings on virtue, governance, wisdom, and the good life.',
+  zoroastrianism: 'Read the Gathas of Zarathustra online free — the oldest hymns of the Avesta, 3,500+ years of Zoroastrian wisdom.',
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { tradition: traditionKey } = await params;
+  const tradition = traditions.find(t => t.key === traditionKey);
+  if (!tradition) return {};
+  
+  const desc = seoDescriptions[traditionKey] || `Read ${tradition.name} sacred texts online free. ${tradition.description}. Browse, search, and listen.`;
+  
+  return {
+    title: `${tradition.name} Sacred Texts — Read ${tradition.description.split(',')[0]} Online Free`,
+    description: desc,
+    alternates: { canonical: `https://u-god.com/library/${traditionKey}` },
+    openGraph: {
+      title: `${tradition.name} Sacred Texts — Read Online Free | U-God`,
+      description: desc,
+    },
+  };
 }
 
 export async function generateStaticParams() {

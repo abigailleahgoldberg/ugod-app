@@ -1,3 +1,11 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'About U-God — Free Sacred Text Platform for Every World Religion',
+  description: 'U-God connects sacred texts from 25+ world traditions in one searchable library. Read the Bible, Quran, Torah, Gita, Dhammapada, and more. Cross-tradition references reveal what unites humanity. Free forever.',
+  alternates: { canonical: 'https://u-god.com/about' },
+};
+
 export default function AboutPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-12">

@@ -54,9 +54,8 @@ function Modal({ passage, onClose }: { passage: Passage; onClose: () => void }) 
           )}
 
           <div className="flex gap-3 mt-8 pt-8 border-t border-gray-100">
-            <button className="btn-primary flex-1">📖 Read Full Text</button>
-            <button className="btn-secondary flex-1">🔊 Listen</button>
-            <button className="btn-secondary px-4">⭐</button>
+            <a href={`/library/${passage.traditionKey}`} className="btn-primary flex-1 text-center">📖 Read Full Text</a>
+            <button onClick={() => { const u = new SpeechSynthesisUtterance(passage.text); u.rate = 0.85; speechSynthesis.speak(u); }} className="btn-secondary flex-1">🔊 Listen</button>
           </div>
         </div>
       </div>

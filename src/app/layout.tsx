@@ -15,9 +15,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
         <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕉️</text></svg>" />
       </head>
-      <body className="min-h-screen antialiased">
+      <body className="min-h-screen antialiased overflow-x-hidden">
         {/* Navigation */}
         <nav className="fixed top-0 w-full z-50 nav-glass">
           <div className="max-w-7xl mx-auto px-6">
@@ -41,8 +42,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="pt-16">{children}</main>
 
         {/* Footer */}
-        <footer className="footer-bg text-white/60 pt-20 pb-10">
-          <div className="max-w-6xl mx-auto px-6">
+        <footer className="footer-bg text-white/60 pt-12 sm:pt-20 pb-10">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
               <div>
                 <div className="flex items-center gap-2 mb-4">

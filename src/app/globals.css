@@ -17,13 +17,17 @@
   --text-muted: #8888a0;
 }
 
-html { scroll-behavior: smooth; }
+html { 
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
 
 body {
   font-family: 'Inter', -apple-system, sans-serif;
   background: var(--cream);
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 /* Sacred reading font */

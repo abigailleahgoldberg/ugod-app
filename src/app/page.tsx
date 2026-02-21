@@ -110,36 +110,36 @@ export default function Home() {
           <div className="float-symbol text-4xl" style={{ top: '8%', left: '50%', animationDelay: '3.5s' }}>⭐</div>
         </div>
 
-        <div className="relative max-w-4xl mx-auto px-6 text-center">
+        <div className="relative w-full max-w-4xl mx-auto px-4 sm:px-6 text-center overflow-hidden">
           {/* Eyebrow */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-8">
+          <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6 sm:mb-8">
             <span className="w-1.5 h-1.5 rounded-full bg-[var(--gold)] animate-pulse"></span>
-            <span className="text-xs font-medium tracking-widest uppercase text-[var(--gold)]">25+ World Traditions</span>
+            <span className="text-[10px] sm:text-xs font-medium tracking-widest uppercase text-[var(--gold)]">25+ World Traditions</span>
           </div>
 
           {/* Headline */}
-          <h1 className="font-display text-[clamp(1.75rem,6vw,4.5rem)] font-bold text-white mb-2 sm:mb-6 leading-[1.1] tracking-tight sm:whitespace-nowrap">
+          <h1 className="font-display text-3xl sm:text-5xl lg:text-7xl font-bold text-white mb-2 sm:mb-4 leading-[1.15] tracking-tight">
             The World&apos;s Sacred Texts,
           </h1>
-          <h1 className="font-display text-[clamp(1.75rem,6vw,4.5rem)] font-bold mb-6 leading-[1.1] tracking-tight">
+          <h1 className="font-display text-3xl sm:text-5xl lg:text-7xl font-bold mb-5 sm:mb-6 leading-[1.15] tracking-tight">
             <span className="bg-gradient-to-r from-[#c9a84c] via-[#e8d59a] to-[#c9a84c] bg-clip-text text-transparent">Beautifully Connected</span>
           </h1>
 
-          <p className="text-lg sm:text-xl text-white/40 mb-12 max-w-xl mx-auto font-light leading-relaxed">
+          <p className="text-base sm:text-xl text-white/40 mb-8 sm:mb-12 max-w-xl mx-auto font-light leading-relaxed px-2">
             Read across traditions. Discover what connects humanity across 5,000 years of spiritual wisdom.
           </p>
 
           {/* Search */}
           <div className="search-container">
             <div className="search-bar">
-              <div className="flex items-center px-6 py-1">
+              <div className="flex items-center px-4 sm:px-6 py-1">
                 <svg className="w-5 h-5 text-white/30 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                 <input
                   type="text"
                   value={query}
                   onChange={e => search(e.target.value)}
                   placeholder="What does your heart need right now?"
-                  className="flex-1 bg-transparent px-4 py-5 text-white outline-none text-lg placeholder-white/30"
+                  className="flex-1 bg-transparent px-3 sm:px-4 py-4 sm:py-5 text-white outline-none text-sm sm:text-lg placeholder-white/30 min-w-0"
                 />
                 {query && (
                   <button onClick={() => search('')} className="text-white/30 hover:text-white/60 transition-colors">
@@ -235,7 +235,7 @@ export default function Home() {
             <p className="text-white/40 max-w-md mx-auto">The same wisdom, expressed across traditions separated by thousands of years and miles.</p>
             <div className="section-divider mt-6"><span className="text-[var(--gold)] text-xs">✦</span></div>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {featuredPassages.slice(0, 6).map(p => (
               <div key={p.id} className="glass-card p-6 cursor-pointer" onClick={() => setSelected(p)}>
                 <div className="flex items-center justify-between mb-4">
@@ -268,7 +268,7 @@ export default function Home() {
           <h2 className="font-display text-2xl sm:text-4xl font-bold text-[var(--text-primary)] mb-4">How U-God Works</h2>
           <div className="section-divider mt-4"><span className="text-[var(--gold)] text-xs">✦</span></div>
         </div>
-        <div className="grid md:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
           {[
             { icon: '🔍', title: 'Search With Meaning', desc: 'Type a feeling, a question, or a topic. Our AI understands what you need and finds the most relevant passages across every tradition.' },
             { icon: '🔗', title: 'Discover Connections', desc: 'Every passage links to parallels in other traditions. See the same truth expressed by different voices across 5,000 years.' },

@@ -1,179 +1,206 @@
 'use client';
-import { useState } from 'react';
-import { searchPassages, traditions, Passage, getCrossRefs } from '@/data/passages';
+import { useState, useCallback, useRef } from 'react';
+import { traditions } from '@/data/passages';
+
+interface SearchResult {
+  id: string;
+  text: string;
+  reference: string;
+  tradition: string;
+  traditionKey: string;
+  emoji: string;
+  color: string;
+  book?: string;
+  url: string;
+}
+
+interface SearchResponse {
+  results: SearchResult[];
+  query: string;
+  traditions: Record<string, number>;
+  total: number;
+}
 
 export default function SearchPage() {
   const [query, setQuery] = useState('');
-  const [results, setResults] = useState<Passage[]>([]);
-  const [selectedPassage, setSelectedPassage] = useState<Passage | null>(null);
-  const [selectedTraditions, setSelectedTraditions] = useState<string[]>([]);
+  const [results, setResults] = useState<SearchResult[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [searched, setSearched] = useState(false);
+  const [tradCounts, setTradCounts] = useState<Record<string, number>>({});
+  const [filterTradition, setFilterTradition] = useState<string | null>(null);
+  const debounceRef = useRef<NodeJS.Timeout>(undefined);
 
-  const handleSearch = (q: string) => {
-    setQuery(q);
-    if (q.trim().length > 1) {
-      let res = searchPassages(q);
-      if (selectedTraditions.length > 0) {
-        res = res.filter(p => selectedTraditions.includes(p.traditionKey));
-      }
-      setResults(res);
-    } else {
+  const search = useCallback(async (q: string) => {
+    if (q.trim().length < 2) {
+      setResults([]);
+      setSearched(false);
+      return;
+    }
+    setLoading(true);
+    setSearched(true);
+    try {
+      const res = await fetch(`/api/search?q=${encodeURIComponent(q)}`);
+      const data: SearchResponse = await res.json();
+      setResults(data.results || []);
+      setTradCounts(data.traditions || {});
+    } catch {
       setResults([]);
     }
+    setLoading(false);
+  }, []);
+
+  const handleInput = (q: string) => {
+    setQuery(q);
+    clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => search(q), 600);
   };
 
-  const toggleTradition = (key: string) => {
-    const next = selectedTraditions.includes(key) 
-      ? selectedTraditions.filter(k => k !== key) 
-      : [...selectedTraditions, key];
-    setSelectedTraditions(next);
-    if (query.trim().length > 1) {
-      let res = searchPassages(query);
-      if (next.length > 0) res = res.filter(p => next.includes(p.traditionKey));
-      setResults(res);
-    }
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    clearTimeout(debounceRef.current);
+    search(query);
   };
 
-  const crossRefs = selectedPassage ? getCrossRefs(selectedPassage) : [];
+  const filteredResults = filterTradition
+    ? results.filter(r => r.traditionKey === filterTradition)
+    : results;
+
+  const activeTraditions = Array.from(new Set(results.map(r => r.traditionKey)));
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-12">
+    <div className="max-w-4xl mx-auto px-4 py-8 sm:py-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold text-[#1a1a3e] mb-3">Search Sacred Texts</h1>
-        <p className="text-[#6b7280]">Type a feeling, a question, or a topic. U-God understands what you need.</p>
+        <h1 className="font-display text-3xl sm:text-4xl font-bold text-[var(--text-primary)] mb-3">Search Sacred Texts</h1>
+        <p className="text-[var(--text-secondary)] text-sm sm:text-base">Search across Christianity, Islam, Judaism, and Hinduism — live from sacred text APIs.</p>
       </div>
 
-      {/* Search */}
-      <div className="search-glow bg-white rounded-2xl border border-[#c9a84c]/30 p-1.5 mb-6">
-        <div className="flex items-center">
-          <span className="pl-4 text-xl">🔍</span>
-          <input
-            type="text"
-            value={query}
-            onChange={e => handleSearch(e.target.value)}
-            placeholder="What does your heart need right now?"
-            className="flex-1 bg-transparent px-4 py-4 outline-none text-lg text-[#1a1a2e] placeholder-[#9ca3af]"
-            autoFocus
-          />
-          {query && <button onClick={() => handleSearch('')} className="pr-4 text-[#9ca3af]">✕</button>}
-        </div>
-      </div>
-
-      {/* Tradition Filters */}
-      <div className="flex flex-wrap gap-2 mb-8">
-        <span className="text-sm text-[#6b7280] py-1">Filter:</span>
-        {traditions.slice(0, 10).map(t => (
-          <button
-            key={t.key}
-            onClick={() => toggleTradition(t.key)}
-            className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${
-              selectedTraditions.includes(t.key)
-                ? 'text-white'
-                : 'bg-[#f5f0e8] text-[#6b7280] hover:bg-[#e8e0d0]'
-            }`}
-            style={selectedTraditions.includes(t.key) ? { backgroundColor: t.color } : {}}
-          >
-            {t.emoji} {t.name}
-          </button>
-        ))}
-      </div>
-
-      <div className="flex gap-8">
-        {/* Results */}
-        <div className="flex-1">
-          {results.length > 0 ? (
-            <div>
-              <p className="text-sm text-[#6b7280] mb-4">
-                {results.length} passages found across {new Set(results.map(r => r.tradition)).size} traditions
-              </p>
-              <div className="space-y-4">
-                {results.map(p => (
-                  <div
-                    key={p.id}
-                    className={`passage-card bg-white rounded-xl p-6 cursor-pointer border border-[#e8e0d0] tradition-${p.traditionKey} ${
-                      selectedPassage?.id === p.id ? 'ring-2 ring-[#c9a84c]' : ''
-                    }`}
-                    onClick={() => setSelectedPassage(p)}
-                  >
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium text-white"
-                        style={{ backgroundColor: traditions.find(t => t.key === p.traditionKey)?.color }}>
-                        {traditions.find(t => t.key === p.traditionKey)?.emoji} {p.tradition}
-                      </span>
-                      <span className="text-xs text-[#6b7280]">{p.reference}</span>
-                    </div>
-                    <p className="font-sacred text-[#1a1a2e] leading-relaxed">
-                      &ldquo;{p.text}&rdquo;
-                    </p>
-                    <div className="flex flex-wrap gap-1.5 mt-3">
-                      {p.themes.map(t => (
-                        <span key={t} className="text-xs px-2 py-0.5 bg-[#f5f0e8] text-[#6b7280] rounded-full">{t}</span>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ) : query.length > 1 ? (
-            <div className="text-center py-16 bg-white rounded-xl border border-[#e8e0d0]">
-              <div className="text-4xl mb-4">🔮</div>
-              <p className="text-[#6b7280] mb-2">No exact matches in preview data.</p>
-              <p className="text-sm text-[#9ca3af]">The full app searches 5M+ passages with AI-powered semantic understanding.</p>
-              <div className="flex flex-wrap justify-center gap-2 mt-4">
-                {['love', 'suffering', 'creation', 'peace', 'forgiveness', 'wisdom', 'death', 'prayer'].map(s => (
-                  <button key={s} onClick={() => handleSearch(s)} className="px-3 py-1 bg-[#f5f0e8] rounded-full text-sm text-[#6b7280] hover:bg-[#e8e0d0]">{s}</button>
-                ))}
-              </div>
-            </div>
-          ) : (
-            <div className="text-center py-16">
-              <div className="text-6xl mb-6">📖</div>
-              <p className="text-xl text-[#1a1a3e] font-bold mb-2">Begin your search</p>
-              <p className="text-[#6b7280]">Try searching for a feeling, a question, or a theme.</p>
-              <div className="grid grid-cols-2 gap-3 max-w-md mx-auto mt-6">
-                {[
-                  { q: 'I feel lost and alone', icon: '💙' },
-                  { q: 'What is the meaning of life?', icon: '🌟' },
-                  { q: 'How to forgive someone', icon: '🕊️' },
-                  { q: 'Love poems from every tradition', icon: '❤️' },
-                  { q: 'What happens after death?', icon: '🌅' },
-                  { q: 'Finding peace in chaos', icon: '🧘' },
-                ].map(({ q, icon }) => (
-                  <button key={q} onClick={() => handleSearch(q)} className="passage-card p-4 bg-white rounded-xl border border-[#e8e0d0] text-left text-sm text-[#1a1a3e]">
-                    <span className="text-lg">{icon}</span>
-                    <span className="block mt-1 text-[#6b7280]">{q}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/* Cross-Reference Panel (Desktop) */}
-        {selectedPassage && (
-          <div className="hidden lg:block w-80">
-            <div className="sticky top-24 bg-white rounded-xl border border-[#e8e0d0] p-6">
-              <h3 className="text-sm font-bold text-[#c9a84c] mb-4">✨ Cross-References</h3>
-              <p className="text-xs text-[#6b7280] mb-4">{selectedPassage.reference}</p>
-              {crossRefs.length > 0 ? (
-                <div className="space-y-4">
-                  {crossRefs.map(ref => (
-                    <div key={ref.id} className={`p-3 bg-[#fafaf7] rounded-lg border-l-2`} style={{ borderColor: traditions.find(t => t.key === ref.traditionKey)?.color }}>
-                      <div className="text-xs font-medium mb-1" style={{ color: traditions.find(t => t.key === ref.traditionKey)?.color }}>
-                        {traditions.find(t => t.key === ref.traditionKey)?.emoji} {ref.reference}
-                      </div>
-                      <p className="font-sacred text-xs text-[#1a1a2e] leading-relaxed">
-                        &ldquo;{ref.text.length > 120 ? ref.text.slice(0, 120) + '...' : ref.text}&rdquo;
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <p className="text-xs text-[#9ca3af]">Full cross-references available in the complete library.</p>
-              )}
-            </div>
+      {/* Search Bar */}
+      <form onSubmit={handleSubmit} className="search-container mb-6">
+        <div className="bg-white rounded-2xl border border-[var(--gold)]/20 shadow-sm hover:shadow-md transition-shadow">
+          <div className="flex items-center px-4 sm:px-6">
+            <svg className="w-5 h-5 text-[var(--text-muted)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+            <input
+              type="text"
+              value={query}
+              onChange={e => handleInput(e.target.value)}
+              placeholder="Search for love, forgiveness, creation, peace..."
+              className="flex-1 bg-transparent px-4 py-4 sm:py-5 outline-none text-base text-[var(--text-primary)] placeholder-[var(--text-muted)] min-w-0"
+              autoFocus
+            />
+            {loading && (
+              <div className="w-5 h-5 border-2 border-[var(--gold)]/30 border-t-[var(--gold)] rounded-full animate-spin" />
+            )}
+            {query && !loading && (
+              <button type="button" onClick={() => { setQuery(''); setResults([]); setSearched(false); }} className="text-[var(--text-muted)] hover:text-[var(--text-primary)]">✕</button>
+            )}
           </div>
-        )}
-      </div>
+        </div>
+      </form>
+
+      {/* Quick suggestions */}
+      {!searched && (
+        <div className="flex flex-wrap justify-center gap-2 mb-8">
+          {['love', 'forgiveness', 'peace', 'death', 'wisdom', 'creation', 'prayer', 'suffering', 'mercy', 'truth'].map(s => (
+            <button key={s} onClick={() => { setQuery(s); search(s); }} className="px-3 py-1.5 rounded-full text-sm bg-[var(--cream-warm)] text-[var(--text-secondary)] hover:bg-[var(--parchment)] border border-transparent hover:border-[var(--gold)]/20 transition-all">
+              {s}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* Tradition filter pills */}
+      {activeTraditions.length > 1 && (
+        <div className="flex flex-wrap gap-2 mb-6">
+          <button
+            onClick={() => setFilterTradition(null)}
+            className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${!filterTradition ? 'bg-[var(--gold)] text-white' : 'bg-[var(--cream-warm)] text-[var(--text-muted)]'}`}
+          >
+            All ({results.length})
+          </button>
+          {activeTraditions.map(tk => {
+            const t = traditions.find(tr => tr.key === tk);
+            if (!t) return null;
+            const count = tradCounts[tk] || results.filter(r => r.traditionKey === tk).length;
+            return (
+              <button
+                key={tk}
+                onClick={() => setFilterTradition(filterTradition === tk ? null : tk)}
+                className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${filterTradition === tk ? 'text-white' : 'bg-[var(--cream-warm)] text-[var(--text-muted)]'}`}
+                style={filterTradition === tk ? { backgroundColor: t.color } : {}}
+              >
+                {t.emoji} {t.name} ({count})
+              </button>
+            );
+          })}
+        </div>
+      )}
+
+      {/* Results */}
+      {loading && results.length === 0 && (
+        <div className="text-center py-16">
+          <div className="w-8 h-8 border-2 border-[var(--gold)]/30 border-t-[var(--gold)] rounded-full animate-spin mx-auto mb-4" />
+          <p className="text-[var(--text-muted)] text-sm">Searching across traditions...</p>
+        </div>
+      )}
+
+      {searched && !loading && results.length === 0 && (
+        <div className="text-center py-16 bg-white rounded-xl border border-gray-100">
+          <div className="text-4xl mb-4">🔮</div>
+          <p className="text-[var(--text-secondary)] mb-2">No results found for &ldquo;{query}&rdquo;</p>
+          <p className="text-sm text-[var(--text-muted)]">Try a simpler keyword like &ldquo;love&rdquo;, &ldquo;peace&rdquo;, or &ldquo;mercy&rdquo;</p>
+        </div>
+      )}
+
+      {filteredResults.length > 0 && (
+        <div>
+          <p className="text-xs text-[var(--text-muted)] mb-4 font-medium tracking-wider uppercase">
+            {filteredResults.length} passages across {activeTraditions.length} tradition{activeTraditions.length > 1 ? 's' : ''}
+          </p>
+          <div className="space-y-4">
+            {filteredResults.map(r => (
+              <a
+                key={r.id}
+                href={r.url}
+                className="block bg-white rounded-xl p-5 sm:p-6 border border-gray-100 hover:border-[var(--gold)]/30 hover:shadow-md transition-all group"
+              >
+                <div className="flex items-center justify-between mb-3">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold text-white tracking-wide uppercase" style={{ backgroundColor: r.color }}>
+                    {r.emoji} {r.tradition}
+                  </span>
+                  <span className="text-[10px] tracking-wider uppercase text-[var(--text-muted)]">{r.reference}</span>
+                </div>
+                <p className="font-sacred text-base sm:text-lg text-[var(--text-primary)] leading-relaxed">
+                  &ldquo;{r.text.length > 300 ? r.text.slice(0, 300) + '...' : r.text}&rdquo;
+                </p>
+                <div className="mt-3 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span className="text-xs text-[var(--gold)]">Read full text →</span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Empty state */}
+      {!searched && (
+        <div className="text-center py-12">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 max-w-lg mx-auto">
+            {[
+              { q: 'What is love?', icon: '❤️' },
+              { q: 'Finding peace', icon: '🕊️' },
+              { q: 'Creation of the world', icon: '🌍' },
+              { q: 'Life after death', icon: '🌅' },
+              { q: 'Forgiveness', icon: '🙏' },
+              { q: 'Wisdom and knowledge', icon: '📖' },
+            ].map(({ q, icon }) => (
+              <button key={q} onClick={() => { setQuery(q); search(q); }} className="p-4 bg-white rounded-xl border border-gray-100 hover:border-[var(--gold)]/30 hover:shadow-sm text-left transition-all">
+                <span className="text-xl">{icon}</span>
+                <span className="block mt-1.5 text-sm text-[var(--text-secondary)]">{q}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

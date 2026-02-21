@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { traditions, featuredPassages, searchPassages, getDailyVerse, getCrossRefs, Passage } from '@/data/passages';
 
 function Pill({ tradition, traditionKey }: { tradition: string; traditionKey: string }) {
@@ -66,16 +66,33 @@ function Modal({ passage, onClose }: { passage: Passage; onClose: () => void }) 
 
 export default function Home() {
   const [query, setQuery] = useState('');
-  const [results, setResults] = useState<Passage[]>([]);
+  const [results, setResults] = useState<any[]>([]);
   const [searching, setSearching] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [selected, setSelected] = useState<Passage | null>(null);
   const daily = getDailyVerse();
+  const debounceRef = useRef<NodeJS.Timeout>(undefined);
 
   const search = (q: string) => {
     setQuery(q);
     if (q.trim().length > 1) {
       setSearching(true);
-      setResults(searchPassages(q));
+      // Start with local results immediately
+      const local = searchPassages(q);
+      setResults(local.map(p => ({ id: p.id, text: p.text, reference: p.reference, tradition: p.tradition, traditionKey: p.traditionKey, emoji: traditions.find(t => t.key === p.traditionKey)?.emoji || '', color: traditions.find(t => t.key === p.traditionKey)?.color || '#666', url: `/library/${p.traditionKey}` })));
+      // Then fetch live API results
+      clearTimeout(debounceRef.current);
+      debounceRef.current = setTimeout(async () => {
+        setLoading(true);
+        try {
+          const res = await fetch(`/api/search?q=${encodeURIComponent(q)}`);
+          const data = await res.json();
+          if (data.results?.length > 0) {
+            setResults(data.results);
+          }
+        } catch {}
+        setLoading(false);
+      }, 500);
     } else {
       setSearching(false);
       setResults([]);
@@ -164,29 +181,43 @@ export default function Home() {
           {/* Search Results */}
           {searching && (
             <div className="mt-8 text-left max-w-2xl mx-auto">
+              {loading && results.length === 0 && (
+                <div className="text-center py-8">
+                  <div className="w-6 h-6 border-2 border-[var(--gold)]/30 border-t-[var(--gold)] rounded-full animate-spin mx-auto mb-3" />
+                  <p className="text-white/30 text-sm">Searching across traditions...</p>
+                </div>
+              )}
               {results.length > 0 ? (
                 <div className="space-y-3">
                   <p className="text-xs text-white/30 font-medium tracking-wider uppercase mb-4">
-                    {results.length} passages across {new Set(results.map(r => r.tradition)).size} traditions
+                    {results.length} passages across {new Set(results.map((r: any) => r.tradition)).size} traditions
+                    {loading && <span className="ml-2 inline-block w-3 h-3 border border-[var(--gold)]/30 border-t-[var(--gold)] rounded-full animate-spin" />}
                   </p>
-                  {results.map(p => (
-                    <div key={p.id} className="glass-card p-5 cursor-pointer" onClick={() => setSelected(p)}>
+                  {results.map((p: any) => (
+                    <a key={p.id} href={p.url || `/library/${p.traditionKey}`} className="glass-card p-5 block hover:bg-white/[0.06] transition-colors">
                       <div className="flex items-center justify-between mb-3">
-                        <Pill tradition={p.tradition} traditionKey={p.traditionKey} />
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold text-white tracking-wide uppercase" style={{ backgroundColor: p.color || '#666' }}>
+                          {p.emoji} {p.tradition}
+                        </span>
                         <span className="text-[10px] tracking-wider uppercase text-white/30">{p.reference}</span>
                       </div>
                       <p className="font-sacred text-white/80 leading-relaxed text-[15px]">
-                        &ldquo;{p.text.length > 200 ? p.text.slice(0, 200) + '...' : p.text}&rdquo;
+                        &ldquo;{p.text?.length > 200 ? p.text.slice(0, 200) + '...' : p.text}&rdquo;
                       </p>
-                    </div>
+                    </a>
                   ))}
+                  <div className="text-center pt-4">
+                    <a href={`/search?q=${encodeURIComponent(query)}`} className="text-xs text-[var(--gold)] hover:underline">
+                      See all results →
+                    </a>
+                  </div>
                 </div>
-              ) : (
+              ) : !loading ? (
                 <div className="glass-card p-8 text-center">
-                  <p className="text-white/40 mb-1">No exact matches in preview data.</p>
-                  <p className="text-xs text-white/20">Full app: AI semantic search across 5M+ passages</p>
+                  <p className="text-white/40 mb-1">No results found for &ldquo;{query}&rdquo;</p>
+                  <p className="text-xs text-white/20">Try a simpler keyword like &ldquo;love&rdquo; or &ldquo;peace&rdquo;</p>
                 </div>
-              )}
+              ) : null}
             </div>
           )}
         </div>

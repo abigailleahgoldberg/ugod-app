@@ -348,6 +348,32 @@ body {
 }
 
 /* ===== SUGGESTION PILLS ===== */
+.suggestion-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  margin: 0 -24px;
+  padding: 0 24px;
+}
+
+.suggestion-scroll::-webkit-scrollbar { display: none; }
+
+.suggestion-row {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 640px) {
+  .suggestion-row {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    width: max-content;
+  }
+}
+
 .suggestion-pill {
   padding: 6px 16px;
   border-radius: 100px;
@@ -358,6 +384,8 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.06);
   transition: all 0.2s;
   cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .suggestion-pill:hover {
@@ -374,8 +402,30 @@ body {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-  .stat-number { font-size: 32px; }
+  .stat-number { font-size: 28px; }
   .sacred-quote::before { display: none; }
+  
+  .daily-card { padding: 24px !important; border-radius: 16px; }
+  .modal-content { border-radius: 16px; max-height: 90vh; }
+  .modal-overlay { padding: 8px; }
+  
+  .search-bar { border-radius: 14px; }
+  .search-bar input { font-size: 15px; padding: 12px 8px; }
+  
+  .tradition-tile { padding: 16px 12px; border-radius: 12px; }
+  .tradition-tile .emoji { font-size: 28px; margin-bottom: 4px; }
+  
+  .glass-card { border-radius: 12px; }
+  .glass-card:hover { transform: none; } /* no hover lift on touch */
+  
+  .btn-primary, .btn-secondary { padding: 12px 24px; font-size: 13px; border-radius: 12px; }
+}
+
+@media (max-width: 480px) {
+  .stat-number { font-size: 24px; }
+  
+  .tradition-tile { padding: 12px 8px; }
+  .tradition-tile .emoji { font-size: 24px; }
 }
 
 /* ===== NAV ===== */

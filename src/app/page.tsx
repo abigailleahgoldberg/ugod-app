@@ -96,17 +96,19 @@ export default function Home() {
       {selected && <Modal passage={selected} onClose={() => setSelected(null)} />}
 
       {/* ===== HERO ===== */}
-      <section className="hero-gradient relative overflow-hidden min-h-[92vh] flex items-center">
-        {/* Floating symbols */}
-        <div className="float-symbol text-7xl" style={{ top: '10%', left: '8%', animationDelay: '0s' }}>✡️</div>
-        <div className="float-symbol text-6xl" style={{ top: '20%', right: '12%', animationDelay: '1.5s' }}>☪️</div>
-        <div className="float-symbol text-5xl" style={{ bottom: '25%', left: '15%', animationDelay: '3s' }}>☸️</div>
-        <div className="float-symbol text-6xl" style={{ top: '15%', right: '35%', animationDelay: '0.5s' }}>🕉️</div>
-        <div className="float-symbol text-5xl" style={{ bottom: '20%', right: '8%', animationDelay: '2s' }}>☯️</div>
-        <div className="float-symbol text-4xl" style={{ bottom: '35%', left: '5%', animationDelay: '4s' }}>✝️</div>
-        <div className="float-symbol text-5xl" style={{ top: '40%', left: '35%', animationDelay: '2.5s' }}>⛩️</div>
-        <div className="float-symbol text-4xl" style={{ bottom: '10%', right: '30%', animationDelay: '1s' }}>🌀</div>
-        <div className="float-symbol text-4xl" style={{ top: '8%', left: '50%', animationDelay: '3.5s' }}>⭐</div>
+      <section className="hero-gradient relative overflow-hidden min-h-[85vh] sm:min-h-[92vh] flex items-center py-16 sm:py-0">
+        {/* Floating symbols — hidden on mobile for cleaner experience */}
+        <div className="hidden sm:block">
+          <div className="float-symbol text-7xl" style={{ top: '10%', left: '8%', animationDelay: '0s' }}>✡️</div>
+          <div className="float-symbol text-6xl" style={{ top: '20%', right: '12%', animationDelay: '1.5s' }}>☪️</div>
+          <div className="float-symbol text-5xl" style={{ bottom: '25%', left: '15%', animationDelay: '3s' }}>☸️</div>
+          <div className="float-symbol text-6xl" style={{ top: '15%', right: '35%', animationDelay: '0.5s' }}>🕉️</div>
+          <div className="float-symbol text-5xl" style={{ bottom: '20%', right: '8%', animationDelay: '2s' }}>☯️</div>
+          <div className="float-symbol text-4xl" style={{ bottom: '35%', left: '5%', animationDelay: '4s' }}>✝️</div>
+          <div className="float-symbol text-5xl" style={{ top: '40%', left: '35%', animationDelay: '2.5s' }}>⛩️</div>
+          <div className="float-symbol text-4xl" style={{ bottom: '10%', right: '30%', animationDelay: '1s' }}>🌀</div>
+          <div className="float-symbol text-4xl" style={{ top: '8%', left: '50%', animationDelay: '3.5s' }}>⭐</div>
+        </div>
 
         <div className="relative max-w-4xl mx-auto px-6 text-center">
           {/* Eyebrow */}
@@ -116,10 +118,10 @@ export default function Home() {
           </div>
 
           {/* Headline */}
-          <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-[1.1] tracking-tight whitespace-nowrap">
+          <h1 className="font-display text-[clamp(1.75rem,6vw,4.5rem)] font-bold text-white mb-2 sm:mb-6 leading-[1.1] tracking-tight sm:whitespace-nowrap">
             The World&apos;s Sacred Texts,
           </h1>
-          <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-[1.1] tracking-tight">
+          <h1 className="font-display text-[clamp(1.75rem,6vw,4.5rem)] font-bold mb-6 leading-[1.1] tracking-tight">
             <span className="bg-gradient-to-r from-[#c9a84c] via-[#e8d59a] to-[#c9a84c] bg-clip-text text-transparent">Beautifully Connected</span>
           </h1>
 
@@ -150,10 +152,12 @@ export default function Home() {
 
           {/* Suggestions */}
           {!searching && (
-            <div className="flex flex-wrap justify-center gap-2 mt-6">
-              {suggestions.map(s => (
-                <button key={s} onClick={() => search(s)} className="suggestion-pill">{s}</button>
-              ))}
+            <div className="suggestion-scroll mt-6">
+              <div className="suggestion-row">
+                {suggestions.map(s => (
+                  <button key={s} onClick={() => search(s)} className="suggestion-pill">{s}</button>
+                ))}
+              </div>
             </div>
           )}
 
@@ -189,8 +193,8 @@ export default function Home() {
       </section>
 
       {/* ===== DAILY VERSE ===== */}
-      <section className="max-w-3xl mx-auto px-6 -mt-16 relative z-10">
-        <div className="daily-card p-8 sm:p-10 cursor-pointer" onClick={() => setSelected(daily)}>
+      <section className="max-w-3xl mx-auto px-4 sm:px-6 -mt-12 sm:-mt-16 relative z-10">
+        <div className="daily-card p-6 sm:p-10 cursor-pointer" onClick={() => setSelected(daily)}>
           <div className="flex items-center gap-3 mb-6">
             <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[var(--gold)]">✦ Daily Verse</span>
             <div className="flex-1 h-px bg-gradient-to-r from-[var(--gold)]/20 to-transparent"></div>
@@ -204,14 +208,14 @@ export default function Home() {
       </section>
 
       {/* ===== TRADITIONS GRID ===== */}
-      <section className="max-w-6xl mx-auto px-6 py-24">
-        <div className="text-center mb-16">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
+        <div className="text-center mb-10 sm:mb-16">
           <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-[var(--gold)] mb-3">The Library</p>
-          <h2 className="font-display text-3xl sm:text-4xl font-bold text-[var(--text-primary)] mb-4">Explore Every Tradition</h2>
+          <h2 className="font-display text-2xl sm:text-4xl font-bold text-[var(--text-primary)] mb-4">Explore Every Tradition</h2>
           <p className="text-[var(--text-secondary)] max-w-md mx-auto">Thousands of texts from 25+ world traditions. One search bar. One library.</p>
           <div className="section-divider mt-6"><span className="text-[var(--gold)] text-xs">✦</span></div>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+        <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4">
           {traditions.map(t => (
             <a key={t.key} href={`/library/${t.key}`} className="tradition-tile" style={{ '--tile-color': t.color } as any}>
               <div className="emoji relative">{t.emoji}</div>
@@ -223,9 +227,9 @@ export default function Home() {
       </section>
 
       {/* ===== FEATURED PASSAGES ===== */}
-      <section className="hero-gradient py-24">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-16">
+      <section className="hero-gradient py-16 sm:py-24">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-10 sm:mb-16">
             <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-[var(--gold)] mb-3">Cross-References</p>
             <h2 className="font-display text-3xl sm:text-4xl font-bold text-white mb-4">Discover Connections</h2>
             <p className="text-white/40 max-w-md mx-auto">The same wisdom, expressed across traditions separated by thousands of years and miles.</p>
@@ -258,10 +262,10 @@ export default function Home() {
       </section>
 
       {/* ===== HOW IT WORKS ===== */}
-      <section className="max-w-5xl mx-auto px-6 py-24">
-        <div className="text-center mb-16">
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
+        <div className="text-center mb-10 sm:mb-16">
           <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-[var(--gold)] mb-3">The Experience</p>
-          <h2 className="font-display text-3xl sm:text-4xl font-bold text-[var(--text-primary)] mb-4">How U-God Works</h2>
+          <h2 className="font-display text-2xl sm:text-4xl font-bold text-[var(--text-primary)] mb-4">How U-God Works</h2>
           <div className="section-divider mt-4"><span className="text-[var(--gold)] text-xs">✦</span></div>
         </div>
         <div className="grid md:grid-cols-3 gap-10">
@@ -301,9 +305,9 @@ export default function Home() {
       </section>
 
       {/* ===== CTA ===== */}
-      <section className="max-w-3xl mx-auto px-6 py-24 text-center">
+      <section className="max-w-3xl mx-auto px-4 sm:px-6 py-16 sm:py-24 text-center">
         <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-[var(--gold)] mb-3">Begin</p>
-        <h2 className="font-display text-3xl sm:text-4xl font-bold text-[var(--text-primary)] mb-4">The Texts Are Always Free</h2>
+        <h2 className="font-display text-2xl sm:text-4xl font-bold text-[var(--text-primary)] mb-4">The Texts Are Always Free</h2>
         <p className="text-[var(--text-secondary)] mb-10 max-w-lg mx-auto leading-relaxed">
           Sacred texts are humanity&apos;s shared heritage. Read any text in any tradition, forever free. Premium tools for deeper study.
         </p>

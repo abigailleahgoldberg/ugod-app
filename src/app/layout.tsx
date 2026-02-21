@@ -28,6 +28,36 @@ export const metadata: Metadata = {
   },
 };
 
+function Nav() {
+  return (
+    <>
+      <nav className="fixed top-0 w-full z-50 nav-glass">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="flex items-center justify-between h-14 sm:h-16">
+            <a href="/" className="flex items-center gap-2.5">
+              <span className="text-xl">🕉️</span>
+              <span className="font-display text-lg font-bold tracking-tight text-[var(--text-primary)]">U-God</span>
+            </a>
+            <div className="hidden md:flex items-center gap-8">
+              <a href="/library" className="nav-link">Library</a>
+              <a href="/search" className="nav-link">Search</a>
+              <a href="/daily" className="nav-link">Daily</a>
+              <a href="/about" className="nav-link">About</a>
+              <button className="btn-primary !py-2 !px-5 !text-xs">Sign In</button>
+            </div>
+            {/* Mobile nav links inline */}
+            <div className="flex md:hidden items-center gap-4">
+              <a href="/library" className="text-xs font-medium text-[var(--text-secondary)] hover:text-[var(--gold)]">Library</a>
+              <a href="/search" className="text-xs font-medium text-[var(--text-secondary)] hover:text-[var(--gold)]">Search</a>
+              <a href="/daily" className="text-xs font-medium text-[var(--text-secondary)] hover:text-[var(--gold)]">Daily</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </>
+  );
+}
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
@@ -36,27 +66,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕉️</text></svg>" />
       </head>
       <body className="min-h-screen antialiased overflow-x-hidden">
-        {/* Navigation */}
-        <nav className="fixed top-0 w-full z-50 nav-glass">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="flex items-center justify-between h-16">
-              <a href="/" className="flex items-center gap-2.5">
-                <span className="text-xl">🕉️</span>
-                <span className="font-display text-lg font-bold tracking-tight text-[var(--text-primary)]">U-God</span>
-              </a>
-              <div className="hidden md:flex items-center gap-8">
-                <a href="/library" className="nav-link">Library</a>
-                <a href="/search" className="nav-link">Search</a>
-                <a href="/daily" className="nav-link">Daily</a>
-                <a href="/about" className="nav-link">About</a>
-                <button className="btn-primary !py-2 !px-5 !text-xs">Sign In</button>
-              </div>
-              <button className="md:hidden text-xl text-[var(--text-secondary)]">☰</button>
-            </div>
-          </div>
-        </nav>
+        <Nav />
 
-        <main className="pt-16">{children}</main>
+        <main className="pt-14 sm:pt-16">{children}</main>
 
         {/* Footer */}
         <footer className="footer-bg text-white/60 pt-12 sm:pt-20 pb-10">

@@ -1,5 +1,5 @@
 import { traditions } from '@/data/passages';
-import { traditionConfigs, fetchBibleChapter, fetchQuranSurah, fetchSefariaText, fetchSuttaCentralText, getTaoChapterText, type TextEntry } from '@/lib/sacred-apis';
+import { traditionConfigs, fetchBibleChapter, fetchQuranSurah, fetchSefariaText, fetchSuttaCentralText, getTaoChapterText, fetchSikhAng, getAnalectsText, getGathaText, type TextEntry } from '@/lib/sacred-apis';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 
@@ -43,6 +43,16 @@ async function fetchTexts(traditionKey: string, bookId: string, chapter: number)
     }
     case 'tao': {
       return getTaoChapterText(chapter);
+    }
+    case 'sikh': {
+      const angNum = parseInt(decodeURIComponent(bookId).replace('ang-', ''));
+      return fetchSikhAng(angNum + chapter - 1);
+    }
+    case 'confucius': {
+      return getAnalectsText(decodeURIComponent(bookId));
+    }
+    case 'zoroastrian': {
+      return getGathaText(decodeURIComponent(bookId));
     }
     default:
       return [];

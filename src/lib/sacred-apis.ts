@@ -253,10 +253,166 @@ export function getTaoChapterText(chapter: number): TextEntry[] {
   }));
 }
 
+// ===== SIKHISM (GurbaniNow API — free, Guru Granth Sahib) =====
+export async function fetchSikhBooks(): Promise<BookEntry[]> {
+  // Guru Granth Sahib is organized by Ang (page), 1-1430
+  // Also organize by major sections/raags
+  return [
+    { id: 'ang-1', name: 'Ang 1-10: Mool Mantar & Japji Sahib', description: 'Japji Sahib (Morning Prayer)', chapters: 10 },
+    { id: 'ang-11', name: 'Ang 11-20: Japji Sahib (continued)', description: 'Japji Sahib (Morning Prayer)', chapters: 10 },
+    { id: 'ang-21', name: 'Ang 21-30: So Dar & So Purakh', description: 'Evening Prayers', chapters: 10 },
+    { id: 'ang-31', name: 'Ang 31-50: Siri Raag', description: 'Siri Raag', chapters: 20 },
+    { id: 'ang-51', name: 'Ang 51-100: Siri Raag (continued)', description: 'Siri Raag', chapters: 50 },
+    { id: 'ang-101', name: 'Ang 101-150: Raag Maajh', description: 'Raag Maajh', chapters: 50 },
+    { id: 'ang-151', name: 'Ang 151-200: Raag Gauree', description: 'Raag Gauree', chapters: 50 },
+    { id: 'ang-201', name: 'Ang 201-300: Raag Gauree (continued)', description: 'Raag Gauree', chapters: 100 },
+    { id: 'ang-301', name: 'Ang 301-400: Raag Aasaa', description: 'Raag Aasaa', chapters: 100 },
+    { id: 'ang-401', name: 'Ang 401-500: Raag Aasaa & Goojaree', description: 'Mixed Raags', chapters: 100 },
+    { id: 'ang-501', name: 'Ang 501-600: Raag Devgandhaaree & Bihaagra', description: 'Mixed Raags', chapters: 100 },
+    { id: 'ang-601', name: 'Ang 601-700: Raag Sorat\'h & Dhanaasree', description: 'Mixed Raags', chapters: 100 },
+    { id: 'ang-701', name: 'Ang 701-800: Raag Jaitsree & Todee', description: 'Mixed Raags', chapters: 100 },
+    { id: 'ang-801', name: 'Ang 801-900: Raag Bilaaval & Gound', description: 'Mixed Raags', chapters: 100 },
+    { id: 'ang-901', name: 'Ang 901-1000: Raag Raamkalee', description: 'Raag Raamkalee', chapters: 100 },
+    { id: 'ang-1001', name: 'Ang 1001-1100: Raag Maaroo & Nat Naaraain', description: 'Mixed Raags', chapters: 100 },
+    { id: 'ang-1101', name: 'Ang 1101-1200: Raag Malaar & Kaanraa', description: 'Mixed Raags', chapters: 100 },
+    { id: 'ang-1201', name: 'Ang 1201-1300: Raag Prabhaatee & Jaijaavantee', description: 'Mixed Raags', chapters: 100 },
+    { id: 'ang-1301', name: 'Ang 1301-1430: Shaloks & Mundaavanee', description: 'Closing Shaloks', chapters: 130 },
+  ];
+}
+
+export async function fetchSikhAng(angNum: number): Promise<TextEntry[]> {
+  try {
+    const res = await fetch(`https://api.gurbaninow.com/v2/ang/${angNum}`);
+    if (!res.ok) return [];
+    const data = await res.json();
+    return (data.page || []).map((item: any, i: number) => ({
+      id: `sggs-${angNum}-${i}`,
+      title: `Line ${i + 1}`,
+      text: item.line?.translation?.english?.default || item.line?.gurmukhi?.unicode || '',
+      reference: `Sri Guru Granth Sahib, Ang ${angNum}, Line ${i + 1}`,
+      verse: i + 1,
+      book: `Ang ${angNum}`,
+    })).filter((e: TextEntry) => e.text.length > 0);
+  } catch { return []; }
+}
+
+// ===== CONFUCIANISM (Analects — embedded, public domain) =====
+const ANALECTS: Record<string, string[]> = {
+  '1': [
+    'The Master said, "Is it not a pleasure to learn and to repeat or practice from time to time what has been learned? Is it not delightful to have friends coming from afar? Is not one a true gentleman who does not feel displeased when others fail to recognize his merits?"',
+    'Yu Tzu said, "It is rare for a person who is filial and respectful of elders to be inclined to transgress against superiors. It has never happened that one not inclined to transgress against superiors is inclined to create disorder."',
+    'The Master said, "Clever words and a pleasing countenance have little connection with being Good."',
+    'Tseng Tzu said, "Each day I examine myself on three things: In planning for others, have I been loyal? In my dealings with friends, have I been trustworthy? Have I practiced what has been passed on to me?"',
+    'The Master said, "In leading a state of a thousand chariots: be reverent in handling affairs and display trustworthiness; be frugal in expenditures and love the people; employ the people only at the proper times."',
+    'The Master said, "At home, a young man should be filial. Outside the home, he should be respectful to his elders. He should be careful in practice and trustworthy in word. He should love all people broadly, and draw close to those who are Good. If he has extra energy after so doing, let him devote it to learning the cultural arts."',
+    'Tzu-hsia said, "One who recognizes and admires worthiness and changes his lustful nature, who is able to fully exhaust his strength in serving his parents, who is able to offer his life in serving his prince, and whose words are trustworthy in dealings with friends — though others may say he is unlearned, I would definitely call him learned."',
+    'The Master said, "If a gentleman is not dignified, then he will not command respect, and his learning will not be on a firm foundation. Hold loyalty and trustworthiness as your highest principles. Do not make friends with those who are lesser than yourself. When you make a mistake, do not be afraid to correct it."',
+  ],
+  '2': [
+    'The Master said, "If you govern with the power of your virtue, you will be like the North Star. It just stays in its place while all the other stars position themselves around it."',
+    'The Master said, "The three hundred poems in the Book of Odes can be summed up in one phrase: Think no evil."',
+    'The Master said, "If you lead the people with government regulations and organize them with penal law, they will avoid wrongdoing but will have no sense of honor or shame. If you lead them with virtue and organize them through proper conduct, they will have a sense of shame and will correct themselves."',
+    'The Master said, "At fifteen, I set my heart on learning. At thirty, I had planted my feet firm upon the ground. At forty, I no longer suffered from perplexities. At fifty, I knew what were the biddings of Heaven. At sixty, I heard them with a docile ear. At seventy, I could follow the dictates of my own heart, without transgressing the right."',
+    'Meng Yi Tzu asked about filial piety. The Master said, "Never disobey." When Fan Chi was driving for the Master, he told him, "Meng asked me about filial piety, and I said, Never disobey." Fan Chi said, "What did you mean?" The Master said, "While parents are alive, serve them according to the rules of propriety. When they die, bury them according to the rules of propriety and sacrifice to them according to the rules of propriety."',
+    'The Master said, "I can talk with Hui for a whole day without his disagreeing with me in any way, as if he were stupid. But when he retires and I examine his private conduct, I find that it fully illustrates my teachings. Hui is not stupid at all!"',
+    'The Master said, "If you study the past and use it to understand the present, you are worthy of being a teacher."',
+    'The Master said, "The gentleman is not a utensil."',
+    'The Master said, "To study and not think is a waste. To think and not study is dangerous."',
+    'The Master said, "To devote oneself to strange principles is decidedly harmful."',
+    'The Master said, "Shall I teach you what knowledge is? When you know a thing, to recognize that you know it; and when you do not know a thing, to recognize that you do not know it. That is knowledge."',
+  ],
+  '4': [
+    'The Master said, "It is beautiful to live amidst Goodness. If you choose not to dwell among Good people, how can you become wise?"',
+    'The Master said, "Those who are not Good cannot long endure hardship, and cannot long enjoy happiness. Those who are Good are content with Goodness. The wise make use of Goodness."',
+    'The Master said, "Only the Good person is able to truly like others, and is able to truly dislike others."',
+    'The Master said, "If you set your heart on Goodness, you will be free of evil."',
+    'The Master said, "In the morning, hear the Way; in the evening, die content."',
+    'The Master said, "A gentleman is concerned with virtue; a petty person is concerned with land. A gentleman is concerned with the law; a petty person is concerned with favors."',
+    'The Master said, "When you see a worthy person, think about how you can equal him. When you see an unworthy person, reflect inwardly on yourself."',
+    'The Master said, "The gentleman desires to be slow in speech but quick in action."',
+    'The Master said, "Virtue is never solitary; it always has neighbors."',
+  ],
+  '15': [
+    'The Master said, "A true gentleman is concerned about his own lack of ability, not about whether others recognize him or not."',
+    'The Master said, "A true gentleman cannot be known in small things, but can be entrusted with great matters. A lesser person cannot be entrusted with great matters, but can be known in small things."',
+    'The Master said, "A true gentleman seeks what is right; a lesser person seeks what is profitable."',
+    'The Master said, "What you do not wish done to yourself, do not do to others."',
+    'The Master said, "A person who has committed a mistake and doesn\'t correct it is committing another mistake."',
+    'The Master said, "I once spent a whole day without eating and a whole night without sleeping in order to think. It was no use. It is better to study."',
+  ],
+};
+
+export function fetchConfuciusBooks(): BookEntry[] {
+  return [
+    { id: 'analects-1', name: 'Book 1: On Learning', description: 'The Analects' },
+    { id: 'analects-2', name: 'Book 2: On Governance', description: 'The Analects' },
+    { id: 'analects-4', name: 'Book 4: On Goodness', description: 'The Analects' },
+    { id: 'analects-15', name: 'Book 15: Duke Ling of Wei', description: 'The Analects' },
+  ];
+}
+
+export function getAnalectsText(book: string): TextEntry[] {
+  const num = book.replace('analects-', '');
+  const verses = ANALECTS[num] || [];
+  return verses.map((text, i) => ({
+    id: `analects-${num}-${i}`,
+    title: `${num}.${i + 1}`,
+    text,
+    reference: `Analects ${num}:${i + 1}`,
+    verse: i + 1,
+    book: `Analects Book ${num}`,
+  }));
+}
+
+// ===== ZOROASTRIANISM (Gathas — embedded, public domain) =====
+const GATHAS: Record<string, string[]> = {
+  '28': [
+    'With outspread hands in petition for that help, O Mazda, I will pray for the works of the holy spirit, O thou the Right, whereby I may please the will of Good Thought and the Ox-Soul.',
+    'I who would serve you, O Mazda Ahura and Good Thought — do ye give through the Right the blessings of both worlds, the bodily and that of Thought, which set the faithful in felicity.',
+    'I who would praise ye as never before, Right and Good Thought and Mazda Ahura, and those for whom Devotion makes an imperishable Dominion grow; come ye to my help at my call.',
+    'I who have set my heart on watching over the soul, in union with Good Thought, and as knowing the rewards of Mazda Ahura for our works, will, while I have power and strength, teach men to seek after Right.',
+    'O thou the Right, shall I see thee and Good Thought, as one that knows? Shall I see the throne of the mightiest Ahura, and the Obedience of Mazda? Through this holy Word on our tongue will we turn the robber horde unto the Greatest.',
+  ],
+  '30': [
+    'Now I will proclaim to those who will hear the things that the understanding man should remember, the praises and prayer of the Good Thought to the Lord, and the joy which he shall see in the light who has remembered them well.',
+    'Hear with your ears the best things; look upon them with clear-seeing thought, for decision between the two Beliefs, each man for himself before the Great Consummation, bethinking you that it be accomplished to our pleasure.',
+    'Now the two primal Spirits, who reveal themselves in vision as Twins, are the Better and the Bad, in thought and word and action. And between these two the wise ones chose aright, the foolish not so.',
+    'And when these two Spirits came together in the beginning, they created Life and Not-Life, and that at the last Worst Existence shall be to the followers of the Lie, but the Best Existence to him that follows Right.',
+    'Of these two Spirits he that followed the Lie chose doing the worst things; the holiest Spirit chose Right, he that clothes himself with the massy heavens as a garment. So likewise they that are eager to please Ahura Mazda by dutiful actions.',
+  ],
+  '43': [
+    'To him shall the best befall, who, as one that knows, speaks to me Right\'s truthful word of Welfare and of Immortality; even the Dominion of Mazda which Good Thought shall increase for him.',
+    'He that in the beginning thus thought, "Let the blessed realms be filled with Light," he it is that by his wisdom created Right. Those realms that the Best Thought shall possess thou dost exalt, O Mazda, through the Spirit, which, O Ahura, is ever the same.',
+    'I recognized thee, O Mazda, in my thought, that thou the First art also the Last — that thou art Father of Good Thought, when I apprehended thee with mine eye — that thou didst truly create Right, and art the Lord to judge the actions of life.',
+    'Thine was Devotion, thine the Ox-Creator, thine the Wisdom of the Spirit, O Mazda Ahura, when thou didst give bodies their life, when thou didst make actions and words, whereby one may exercise one\'s convictions at one\'s free-will.',
+  ],
+};
+
+export function fetchZoroastrianBooks(): BookEntry[] {
+  return [
+    { id: 'gatha-28', name: 'Yasna 28: Ahunavaiti Gatha (Prayer)', description: 'Gathas of Zarathustra' },
+    { id: 'gatha-30', name: 'Yasna 30: The Two Spirits', description: 'Gathas of Zarathustra' },
+    { id: 'gatha-43', name: 'Yasna 43: Ushtavaiti Gatha (Happiness)', description: 'Gathas of Zarathustra' },
+  ];
+}
+
+export function getGathaText(book: string): TextEntry[] {
+  const num = book.replace('gatha-', '');
+  const verses = GATHAS[num] || [];
+  return verses.map((text, i) => ({
+    id: `gatha-${num}-${i}`,
+    title: `Verse ${i + 1}`,
+    text,
+    reference: `Yasna ${num}:${i + 1}`,
+    verse: i + 1,
+    book: `Yasna ${num}`,
+  }));
+}
+
 // ===== TRADITION CONFIG — maps tradition keys to their data source =====
 export interface TraditionConfig {
   key: string;
-  apiType: 'bible' | 'quran' | 'sefaria' | 'gita' | 'static' | 'suttacentral' | 'tao';
+  apiType: 'bible' | 'quran' | 'sefaria' | 'gita' | 'static' | 'suttacentral' | 'tao' | 'sikh' | 'confucius' | 'zoroastrian';
   fetchBooks: () => Promise<BookEntry[]>;
   description: string;
   features: string[];
@@ -304,5 +460,26 @@ export const traditionConfigs: Record<string, TraditionConfig> = {
     fetchBooks: async () => getTaoTeChingChapters(),
     description: 'The Tao Te Ching — 81 chapters of Lao Tzu\'s timeless wisdom on the nature of existence.',
     features: ['81 Chapters', 'Public Domain', 'Classical Philosophy'],
+  },
+  sikhism: {
+    key: 'sikhism',
+    apiType: 'sikh',
+    fetchBooks: fetchSikhBooks,
+    description: 'Sri Guru Granth Sahib — 1,430 Angs (pages) of divine poetry, hymns, and wisdom. Powered by GurbaniNow API.',
+    features: ['Gurmukhi + English', '1,430 Pages', 'Multiple Gurus'],
+  },
+  confucianism: {
+    key: 'confucianism',
+    apiType: 'confucius',
+    fetchBooks: async () => fetchConfuciusBooks(),
+    description: 'The Analects of Confucius — collected sayings on virtue, governance, and the good life.',
+    features: ['Public Domain', 'Classical Chinese Philosophy', '4 Books Available'],
+  },
+  zoroastrianism: {
+    key: 'zoroastrianism',
+    apiType: 'zoroastrian',
+    fetchBooks: async () => fetchZoroastrianBooks(),
+    description: 'The Gathas of Zarathustra — the oldest hymns of the Avesta, foundational prayers of Zoroastrianism.',
+    features: ['Public Domain', '3,500+ Years Old', 'Gathas'],
   },
 };

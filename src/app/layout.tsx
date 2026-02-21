@@ -2,12 +2,29 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: "U-God — The World's Sacred Texts, Connected",
-  description: 'Explore sacred texts from every tradition. Discover what connects humanity across 5,000 years of spiritual wisdom.',
+  title: "U-God — The World's Sacred Texts, Beautifully Connected",
+  description: 'Explore sacred texts from 25+ world traditions. Search across Christianity, Islam, Judaism, Buddhism, Hinduism, Taoism and more. Discover what connects humanity across 5,000 years of spiritual wisdom.',
+  metadataBase: new URL('https://u-god.com'),
   openGraph: {
-    title: "U-God — The World's Sacred Texts, Connected",
-    description: 'Read across traditions. Discover what connects humanity.',
+    title: "U-God — The World's Sacred Texts, Beautifully Connected",
+    description: '25+ traditions. 5,000+ texts. One library. Read across Christianity, Islam, Judaism, Buddhism, Hinduism, Taoism and more.',
     type: 'website',
+    url: 'https://u-god.com',
+    siteName: 'U-God',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: "U-God — The World's Sacred Texts, Beautifully Connected",
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "U-God — The World's Sacred Texts, Beautifully Connected",
+    description: '25+ traditions. 5,000+ texts. One library. Discover what connects humanity.',
+    images: ['/og-image.png'],
   },
 };
 

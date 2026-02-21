@@ -42,6 +42,7 @@ function Nav() {
               <a href="/library" className="nav-link">Library</a>
               <a href="/search" className="nav-link">Search</a>
               <a href="/daily" className="nav-link">Daily</a>
+              <a href="/bookmarks" className="nav-link">Bookmarks</a>
               <a href="/about" className="nav-link">About</a>
               <button className="btn-primary !py-2 !px-5 !text-xs">Sign In</button>
             </div>
@@ -50,6 +51,7 @@ function Nav() {
               <a href="/library" className="text-xs font-medium text-[var(--text-secondary)] hover:text-[var(--gold)]">Library</a>
               <a href="/search" className="text-xs font-medium text-[var(--text-secondary)] hover:text-[var(--gold)]">Search</a>
               <a href="/daily" className="text-xs font-medium text-[var(--text-secondary)] hover:text-[var(--gold)]">Daily</a>
+              <a href="/bookmarks" className="text-xs font-medium text-[var(--text-secondary)] hover:text-[var(--gold)]">⭐</a>
             </div>
           </div>
         </div>

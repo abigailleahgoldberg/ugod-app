@@ -2,6 +2,8 @@ import { traditions } from '@/data/passages';
 import { traditionConfigs, fetchBibleChapter, fetchQuranSurah, fetchSefariaText, fetchSuttaCentralText, getTaoChapterText, fetchSikhAng, getAnalectsText, getGathaText, type TextEntry } from '@/lib/sacred-apis';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import { VerseActions, SpeakAll } from '@/components/VerseActions';
+import { CrossRefs } from '@/components/CrossRefs';
 
 interface Props {
   params: Promise<{ tradition: string; book: string }>;
@@ -108,20 +110,38 @@ export default async function BookPage({ params, searchParams }: Props) {
         <div className="section-divider mb-8 max-w-[100px]"><span className="text-[var(--gold)] text-xs">✦</span></div>
 
         {texts.length > 0 ? (
-          <div className="space-y-4">
-            {texts.map((entry) => (
-              <div key={entry.id} className="group">
-                <div className="flex gap-3">
-                  <span className="text-xs font-bold text-[var(--gold)] mt-1 min-w-[2rem] text-right opacity-40 group-hover:opacity-100 transition-opacity">
-                    {entry.verse || ''}
-                  </span>
-                  <p className="font-sacred text-lg text-[var(--text-primary)] leading-relaxed flex-1">
-                    {entry.text}
-                  </p>
+          <>
+            <div className="flex justify-end mb-4">
+              <SpeakAll texts={texts.map(t => t.text)} />
+            </div>
+            <div className="space-y-4">
+              {texts.map((entry) => (
+                <div key={entry.id} className="group">
+                  <div className="flex gap-3">
+                    <span className="text-xs font-bold text-[var(--gold)] mt-1 min-w-[2rem] text-right opacity-40 group-hover:opacity-100 transition-opacity">
+                      {entry.verse || ''}
+                    </span>
+                    <p className="font-sacred text-lg text-[var(--text-primary)] leading-relaxed flex-1">
+                      {entry.text}
+                    </p>
+                    <VerseActions
+                      verseId={entry.id}
+                      text={entry.text}
+                      reference={entry.reference}
+                      tradition={tradition.name}
+                      traditionKey={traditionKey}
+                      emoji={tradition.emoji}
+                      url={`/library/${traditionKey}/${bookId}?chapter=${chapter}`}
+                      verse={entry.verse || 0}
+                      bookId={bookId}
+                      chapter={chapter}
+                    />
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+            <CrossRefs traditionKey={traditionKey} texts={texts.map(t => t.text)} />
+          </>
         ) : (
           <div className="text-center py-16">
             <p className="text-[var(--text-muted)]">

@@ -1,4 +1,8 @@
 import { traditions } from '@/data/passages';
+import { blogPosts } from '@/data/blog';
+import { getHolidaysForTradition, calendarTraditions } from '@/data/holidays';
+import { traditionExternal } from '@/data/tradition-external';
+import { StaticTextDisclaimer } from '@/components/StaticTextDisclaimer';
 import { traditionConfigs, type BookEntry } from '@/lib/sacred-apis';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -42,10 +46,49 @@ export async function generateStaticParams() {
   return traditions.map(t => ({ tradition: t.key }));
 }
 
+const TRADITION_BLOG_MAP: Record<string, {slug: string; title: string; readTime: string}[]> = {
+  'hinduism': [
+    { slug: 'what-is-the-bhagavad-gita', title: 'What Is the Bhagavad Gita?', readTime: '7 min read' },
+    { slug: 'what-is-karma', title: 'What Is Karma? Hindu vs. Buddhist Views', readTime: '6 min read' },
+  ],
+  'islam': [
+    { slug: 'what-is-the-quran', title: 'What Is the Quran?', readTime: '7 min read' },
+    { slug: 'five-pillars-of-islam', title: 'The Five Pillars of Islam', readTime: '6 min read' },
+    { slug: 'what-is-ramadan', title: 'What Is Ramadan?', readTime: '5 min read' },
+  ],
+  'buddhism': [
+    { slug: 'who-was-the-buddha', title: 'Who Was the Buddha?', readTime: '6 min read' },
+    { slug: 'what-is-karma', title: 'What Is Karma? Hindu vs. Buddhist Views', readTime: '6 min read' },
+    { slug: 'sacred-silence-meditation-world-religions', title: 'Sacred Silence: Meditation in Every Religion', readTime: '7 min read' },
+  ],
+  'judaism': [
+    { slug: 'what-is-the-torah', title: 'What Is the Torah?', readTime: '6 min read' },
+    { slug: 'the-psalms-ancient-poetry', title: 'The Psalms: Why Ancient Poetry Still Resonates', readTime: '6 min read' },
+    { slug: 'dead-sea-scrolls', title: 'The Dead Sea Scrolls', readTime: '6 min read' },
+    { slug: 'yom-kippur-most-important-day-judaism', title: 'Yom Kippur: The Most Important Day in Judaism', readTime: '7 min read' },
+  ],
+  'christianity': [
+    { slug: 'sermon-on-the-mount', title: 'The Sermon on the Mount', readTime: '7 min read' },
+    { slug: 'what-all-religions-say-about-death', title: 'What All Religions Say About Death', readTime: '8 min read' },
+  ],
+  'taoism': [
+    { slug: 'what-is-the-tao', title: 'What Is the Tao? Inside the Tao Te Ching', readTime: '6 min read' },
+    { slug: 'taoism-vs-confucianism', title: 'Taoism vs. Confucianism', readTime: '7 min read' },
+  ],
+  'confucianism': [
+    { slug: 'taoism-vs-confucianism', title: 'Taoism vs. Confucianism', readTime: '7 min read' },
+  ],
+};
+
 export default async function TraditionPage({ params }: Props) {
   const { tradition: traditionKey } = await params;
   const tradition = traditions.find(t => t.key === traditionKey);
   if (!tradition) notFound();
+
+  // Related blog posts
+  const relatedPosts = (TRADITION_BLOG_MAP[traditionKey] || []).map(ref =>
+    blogPosts.find(p => p.slug === ref.slug)
+  ).filter(Boolean);
 
   const config = traditionConfigs[traditionKey];
   let books: BookEntry[] = [];
@@ -59,9 +102,46 @@ export default async function TraditionPage({ params }: Props) {
   }
 
   const hasApi = !!config;
+  const staticCuratedTraditions = new Set(['sufism','fivepercent','african','ancient','indigenous','jainism','bahai','shinto']);
+  const isStaticCurated = staticCuratedTraditions.has(traditionKey);
+
+  // #1b — BreadcrumbList
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://u-god.com' },
+      { '@type': 'ListItem', position: 2, name: 'Library', item: 'https://u-god.com/library' },
+      { '@type': 'ListItem', position: 3, name: tradition.name, item: `https://u-god.com/library/${traditionKey}` },
+    ],
+  };
+
+  // #2 — ItemList of sacred texts in this tradition
+  const itemListSchema = books.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: `${tradition.name} Sacred Texts`,
+    description: `A curated library of ${tradition.name} sacred texts including scripture, commentary, and classical writings.`,
+    url: `https://u-god.com/library/${traditionKey}`,
+    numberOfItems: books.length,
+    itemListElement: books.slice(0, 30).map((book, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: book.name,
+      url: `https://u-god.com/library/${traditionKey}/${encodeURIComponent(book.id)}`,
+      item: {
+        '@type': 'Book',
+        name: book.name,
+        description: book.description || `A sacred text in the ${tradition.name} tradition`,
+        url: `https://u-god.com/library/${traditionKey}/${encodeURIComponent(book.id)}`,
+      },
+    })),
+  } : null;
 
   return (
     <div className="min-h-screen">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      {itemListSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }} />}
       {/* Hero */}
       <section className="hero-gradient py-16 sm:py-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
@@ -71,6 +151,19 @@ export default async function TraditionPage({ params }: Props) {
           <div className="text-6xl sm:text-7xl mb-4">{tradition.emoji}</div>
           <h1 className="font-display text-3xl sm:text-5xl font-bold text-white mb-3">{tradition.name}</h1>
           <p className="text-white/40 text-base sm:text-lg max-w-xl mx-auto mb-6">{tradition.description}</p>
+          {traditionExternal[traditionKey] && (
+            <p className="text-white/60 text-sm sm:text-base max-w-2xl mx-auto mb-4 leading-relaxed">
+              {traditionExternal[traditionKey].supportParagraph}{' '}
+              <a
+                href={traditionExternal[traditionKey].primaryLink.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[var(--gold)] hover:opacity-80 underline underline-offset-2 transition-opacity"
+              >
+                {traditionExternal[traditionKey].primaryLink.label} ↗
+              </a>
+            </p>
+          )}
 
           {config && (
             <div className="flex flex-wrap justify-center gap-2 mb-6">
@@ -97,6 +190,7 @@ export default async function TraditionPage({ params }: Props) {
       <section className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
         {hasApi && books.length > 0 ? (
           <>
+            {isStaticCurated && <StaticTextDisclaimer />}
             <div className="mb-8">
               <h2 className="font-display text-2xl font-bold text-[var(--text-primary)] mb-2">
                 Browse {tradition.name} Texts
@@ -168,7 +262,96 @@ export default async function TraditionPage({ params }: Props) {
           </div>
         )}
 
-        {/* Back to library */}
+        {/* Trusted Sources Section */}
+        {traditionExternal[traditionKey]?.trustedSources?.length > 0 && (
+          <div className="mt-12 pt-8 border-t border-gray-100">
+            <h2 className="font-display text-xl font-bold text-[var(--text-primary)] mb-4">
+              Trusted Sources
+            </h2>
+            <div className="grid sm:grid-cols-3 gap-3">
+              {traditionExternal[traditionKey].trustedSources.map(src => (
+                <a
+                  key={src.url}
+                  href={src.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start gap-3 p-4 rounded-xl border border-gray-100 bg-white hover:border-[var(--gold)]/40 hover:shadow-sm transition-all group"
+                >
+                  <span className="text-lg mt-0.5">🔗</span>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-bold text-[var(--text-primary)] group-hover:text-[var(--gold)] transition-colors">{src.label} ↗</p>
+                    <p className="text-xs text-[var(--text-muted)] mt-0.5 leading-relaxed">{src.description}</p>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Sacred Holidays Section */}
+        {(() => {
+          const tradHolidays = getHolidaysForTradition(traditionKey);
+          const tradInfo = calendarTraditions.find(t => t.key === traditionKey);
+          if (!tradHolidays.length) return null;
+          return (
+            <div className="mt-12 pt-8 border-t border-gray-100">
+              <div className="flex items-center justify-between mb-5">
+                <h2 className="font-display text-xl font-bold text-[var(--text-primary)]">
+                  {tradInfo?.emoji} {tradition.name} Sacred Holidays
+                </h2>
+                <Link href="/calendar" className="text-xs font-semibold text-[var(--gold)] hover:opacity-80 transition-opacity">
+                  View full calendar →
+                </Link>
+              </div>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {tradHolidays.map(h => (
+                  <Link
+                    key={h.slug}
+                    href={`/holidays/${h.slug}`}
+                    className="flex items-start gap-3 p-4 rounded-xl border border-gray-100 bg-white hover:border-[var(--gold)]/40 hover:shadow-sm transition-all group"
+                  >
+                    <span className="text-2xl flex-shrink-0">{h.emoji}</span>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-bold text-[var(--text-primary)] group-hover:text-[var(--gold)] transition-colors leading-tight">{h.name}</p>
+                      <p className="text-xs text-[var(--text-muted)] mt-0.5 line-clamp-2">{h.description}</p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          );
+        })()}
+
+        {/* Related Blog Posts */}
+        {relatedPosts.length > 0 && (
+          <div className="mt-12 pt-8 border-t border-gray-100">
+            <div className="flex items-center justify-between mb-5">
+              <h2 className="font-display text-xl font-bold text-[var(--text-primary)]">
+                📖 From the Blog
+              </h2>
+              <Link href="/blog" className="text-xs font-semibold text-[var(--gold)] hover:opacity-80 transition-opacity">
+                All articles →
+              </Link>
+            </div>
+            <div className="grid sm:grid-cols-2 gap-3">
+              {relatedPosts.map(post => post && (
+                <Link
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
+                  className="flex items-start gap-3 p-4 rounded-xl border border-gray-100 bg-white hover:border-[var(--gold)]/40 hover:shadow-sm transition-all group"
+                >
+                  <span className="text-2xl flex-shrink-0">{post.emoji}</span>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-bold text-[var(--text-primary)] group-hover:text-[var(--gold)] transition-colors leading-tight">{post.title}</p>
+                    <p className="text-xs text-[var(--text-muted)] mt-1">{post.readTime}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
+                {/* Back to library */}
         <div className="text-center mt-12 pt-8 border-t border-gray-100">
           <Link href="/library" className="text-sm text-[var(--text-muted)] hover:text-[var(--gold)] transition-colors">
             ← Back to all traditions

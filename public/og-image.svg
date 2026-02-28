@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#111118;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#c9a84c;stop-opacity:0.15" />
+      <stop offset="100%" style="stop-color:#c9a84c;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <rect width="1200" height="630" fill="url(#glow)" />
+
+  <!-- Gold border -->
+  <rect x="24" y="24" width="1152" height="582" rx="12" ry="12"
+        fill="none" stroke="#c9a84c" stroke-width="1.5" stroke-opacity="0.6" />
+
+  <!-- Gold top accent line -->
+  <rect x="0" y="0" width="1200" height="4" fill="#c9a84c" opacity="0.8" />
+
+  <!-- Symbol row -->
+  <text x="600" y="200" font-family="serif" font-size="56" text-anchor="middle" fill="#c9a84c" opacity="0.7">
+    ✡ ☪ ✝ ☸ 🕉 ☯ 🌙 ✨
+  </text>
+
+  <!-- Main headline -->
+  <text x="600" y="310" font-family="Georgia, serif" font-size="72" font-weight="bold"
+        text-anchor="middle" fill="#f5f0e8" letter-spacing="-1">
+    The World&apos;s Sacred Texts
+  </text>
+  <text x="600" y="390" font-family="Georgia, serif" font-size="72" font-weight="bold"
+        text-anchor="middle" fill="#c9a84c" letter-spacing="-1">
+    Beautifully Connected
+  </text>
+
+  <!-- Subtitle -->
+  <text x="600" y="470" font-family="Georgia, serif" font-size="28"
+        text-anchor="middle" fill="#9ca3af" letter-spacing="3">
+    EVERY TRADITION · ONE PLACE
+  </text>
+
+  <!-- Domain -->
+  <text x="600" y="560" font-family="Georgia, serif" font-size="22"
+        text-anchor="middle" fill="#c9a84c" opacity="0.8">
+    u-god.com
+  </text>
+</svg>

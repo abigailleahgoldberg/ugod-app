@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Search Sacred Texts — Find Verses Across Bible, Quran, Torah & More',
-  description: 'Search across Christianity, Islam, Judaism, Buddhism, and Hinduism simultaneously. Find verses about love, peace, forgiveness, wisdom, and any topic across the world\'s sacred texts. Free cross-tradition search.',
+  title: 'Sacred Text Search — Bible, Quran, Torah, Gita & More',
+  description: 'Search 25+ sacred traditions at once. Find verses on love, peace, and wisdom in the Bible, Quran, Torah, Gita, and more. Free cross-tradition search tool.',
   alternates: { canonical: 'https://u-god.com/search' },
 };
 

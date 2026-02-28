@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Sacred Text Library — Read Bible, Quran, Torah, Gita Online Free',
-  description: 'Browse sacred texts from 25+ world religions. Read the Bible (KJV), Quran, Torah, Bhagavad Gita, Dhammapada, Guru Granth Sahib, Tao Te Ching, Analects of Confucius, and Zoroastrian Gathas. All free, no account needed.',
+  title: 'Sacred Text Library — Bible, Quran, Torah, Gita Free',
+  description: 'Browse sacred texts from 25+ world religions free. Read the Bible, Quran, Torah, Gita, Dhammapada, Guru Granth Sahib, Tao Te Ching, and more. No account needed.',
   alternates: { canonical: 'https://u-god.com/library' },
 };
 

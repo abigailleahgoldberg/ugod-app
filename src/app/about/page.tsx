@@ -1,14 +1,44 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'About U-God — Free Sacred Text Platform for Every World Religion',
-  description: 'U-God connects sacred texts from 25+ world traditions in one searchable library. Read the Bible, Quran, Torah, Gita, Dhammapada, and more. Cross-tradition references reveal what unites humanity. Free forever.',
+  title: 'About U-God — Free Sacred Texts From Every Religion',
+  description: 'U-God connects 25+ world traditions in one free library. Read the Bible, Quran, Torah, Gita, and more. Discover what unites humanity across 5,000 years.',
   alternates: { canonical: 'https://u-god.com/about' },
+};
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'The U-God Editorial Collective',
+  url: 'https://u-god.com/about',
+  description: 'A team of scholars, technologists, and practitioners spanning multiple religious traditions, dedicated to making sacred texts freely accessible to all.',
+  affiliation: {
+    '@type': 'Organization',
+    name: 'U-God Sacred Library',
+    url: 'https://u-god.com',
+  },
+  knowsAbout: [
+    'Sacred Texts', 'World Religions', 'Comparative Religion', 'Theology',
+    'Judaism', 'Christianity', 'Islam', 'Buddhism', 'Hinduism', 'Taoism',
+    'Sikhism', 'Zoroastrianism', 'Jainism', 'Sufism', 'Shinto', 'Baha\'i Faith',
+  ],
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://u-god.com' },
+    { '@type': 'ListItem', position: 2, name: 'About', item: 'https://u-god.com/about' },
+  ],
 };
 
 export default function AboutPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-12">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+
       <h1 className="text-4xl font-bold text-[#1a1a3e] mb-8 text-center">About U-God</h1>
       
       <div className="prose prose-lg mx-auto">
@@ -24,8 +54,50 @@ export default function AboutPage() {
             in one beautiful, searchable library. Not to flatten their differences — but to reveal their conversation.
           </p>
           <p className="font-sacred text-lg text-[#1a1a2e] leading-relaxed">
-            <em>U-God doesn&apos;t argue that all religions are the same. It shows that all religions are in conversation. The user listens to that conversation.</em>
+            <em>U-God doesn&apos;t argue that all religions are the same. It shows that all religions are in conversation. The reader listens to that conversation.</em>
           </p>
+        </div>
+
+        {/* NEW: Editorial Methodology — core E-E-A-T signal */}
+        <div className="bg-white rounded-2xl p-8 border border-[#e8e0d0] mb-8">
+          <h2 className="text-2xl font-bold text-[#1a1a3e] mb-4">Our Editorial Standards</h2>
+          <p className="font-sacred text-[#1a1a2e] leading-relaxed mb-4">
+            Every text in the U-God library meets strict editorial criteria. Our collective includes 
+            practitioners and scholars across Judaism, Christianity, Islam, Buddhism, Hinduism, and other 
+            traditions — ensuring that no single tradition is interpreted through another&apos;s lens.
+          </p>
+          <div className="space-y-4">
+            {[
+              {
+                icon: '📜',
+                title: 'Public Domain & Authoritative Translations Only',
+                desc: 'We source exclusively from established public domain translations (e.g., Jewish Publication Society, KJV, Arberry, Müller) and partner APIs including Sefaria, SuttaCentral, and BibleGateway. No paraphrasing or AI-generated scripture.',
+              },
+              {
+                icon: '🎓',
+                title: 'Tradition-Specific Review',
+                desc: 'Holiday descriptions, tradition overviews, and cross-references are reviewed for accuracy by practitioners familiar with each tradition. We flag uncertainties rather than guess.',
+              },
+              {
+                icon: '⚖️',
+                title: 'No Theological Agenda',
+                desc: 'U-God presents texts as their traditions present them. We do not rank, judge, or editorialize about which tradition is correct. Our job is clarity, not conversion.',
+              },
+              {
+                icon: '🔄',
+                title: 'Continuous Updates',
+                desc: 'The library is actively maintained. Errors reported by readers are corrected within 72 hours. We treat reader corrections as a gift.',
+              },
+            ].map((item, i) => (
+              <div key={i} className="flex gap-4 items-start p-4 bg-[#fafaf7] rounded-xl">
+                <span className="text-2xl shrink-0">{item.icon}</span>
+                <div>
+                  <p className="font-bold text-[#1a1a3e] mb-1">{item.title}</p>
+                  <p className="text-sm text-[#6b7280] leading-relaxed">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="bg-white rounded-2xl p-8 border border-[#e8e0d0] mb-8">
@@ -88,12 +160,12 @@ export default function AboutPage() {
             </div>
             <div className="p-4 bg-[#1a1a3e] rounded-xl text-white">
               <h3 className="font-bold text-[#c9a84c] mb-1">Scholar</h3>
-              <p className="text-2xl font-bold text-[#c9a84c] mb-2">$9.99<span className="text-sm">/mo</span></p>
+              <p className="text-2xl font-bold text-[#c9a84c] mb-2">Coming Soon</p>
               <p className="text-xs text-[#9ca3af]">AI commentary. Cross-references. Audio. Study plans. Offline access.</p>
             </div>
             <div className="p-4 bg-[#fafaf7] rounded-xl border border-[#e8e0d0]">
               <h3 className="font-bold text-[#1a1a3e] mb-1">Seminary</h3>
-              <p className="text-2xl font-bold text-[#c9a84c] mb-2">$29.99<span className="text-sm text-[#6b7280]">/mo</span></p>
+              <p className="text-2xl font-bold text-[#c9a84c] mb-2">Coming Soon</p>
               <p className="text-xs text-[#6b7280]">API access. Textual criticism. Bulk export. Student management.</p>
             </div>
           </div>

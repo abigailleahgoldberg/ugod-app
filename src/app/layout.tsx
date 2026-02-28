@@ -1,20 +1,22 @@
 import type { Metadata } from 'next';
+import NavClient from '@/components/NavClient';
 import './globals.css';
 
 export const metadata: Metadata = {
   title: {
-    default: 'Read Sacred Texts Online Free — Bible, Quran, Torah, Gita & More | U-God',
-    template: '%s | U-God — Sacred Texts Online',
+    default: 'Sacred Texts Online Free — Bible, Quran, Torah & More',
+    template: '%s | U-God',
   },
-  description: 'Read sacred texts from 25+ world religions online for free. Search the Bible, Quran, Torah, Bhagavad Gita, Dhammapada, Guru Granth Sahib, Tao Te Ching and more. Cross-tradition connections, daily verses, and audio.',
+  description: 'Read sacred texts from 25+ world religions free. Search the Bible, Quran, Torah, Bhagavad Gita, and Tao Te Ching. Daily verses and cross-tradition search.',
   metadataBase: new URL('https://u-god.com'),
   keywords: ['sacred texts online', 'read bible online', 'read quran online', 'torah online', 'bhagavad gita', 'dhammapada', 'world religions', 'religious texts', 'compare religions', 'interfaith', 'spiritual wisdom', 'sacred scripture', 'guru granth sahib', 'tao te ching', 'cross-reference religions'],
-  authors: [{ name: 'U-God' }],
-  creator: 'U-God',
+  authors: [{ name: 'U-God Sacred Library', url: 'https://u-god.com' }],
+  creator: 'U-God Sacred Library',
+  publisher: 'U-God Sacred Library',
   robots: { index: true, follow: true },
   alternates: { canonical: 'https://u-god.com' },
   openGraph: {
-    title: 'Read Sacred Texts Online Free — Bible, Quran, Torah & More | U-God',
+    title: 'Sacred Texts Online Free — Bible, Quran, Torah & More',
     description: 'The world\'s sacred texts, beautifully connected. Search across 25+ traditions. Free forever.',
     type: 'website',
     url: 'https://u-god.com',
@@ -31,43 +33,12 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Read Sacred Texts Online Free — 25+ World Religions | U-God',
+    title: 'Sacred Texts Online Free — 25+ World Religions | U-God',
     description: 'Bible, Quran, Torah, Gita, Dhammapada, Tao Te Ching & more. One search bar. Free forever.',
     images: ['/og-image.png'],
   },
 };
 
-function Nav() {
-  return (
-    <>
-      <nav className="fixed top-0 w-full z-50 nav-glass">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="flex items-center justify-between h-14 sm:h-16">
-            <a href="/" className="flex items-center gap-2.5">
-              <span className="text-xl">🕉️</span>
-              <span className="font-display text-lg font-bold tracking-tight text-[var(--text-primary)]">U-God</span>
-            </a>
-            <div className="hidden md:flex items-center gap-8">
-              <a href="/library" className="nav-link">Library</a>
-              <a href="/search" className="nav-link">Search</a>
-              <a href="/daily" className="nav-link">Daily</a>
-              <a href="/bookmarks" className="nav-link">Bookmarks</a>
-              <a href="/about" className="nav-link">About</a>
-              <button className="btn-primary !py-2 !px-5 !text-xs">Sign In</button>
-            </div>
-            {/* Mobile nav links inline */}
-            <div className="flex md:hidden items-center gap-4">
-              <a href="/library" className="text-xs font-medium text-[var(--text-secondary)] hover:text-[var(--gold)]">Library</a>
-              <a href="/search" className="text-xs font-medium text-[var(--text-secondary)] hover:text-[var(--gold)]">Search</a>
-              <a href="/daily" className="text-xs font-medium text-[var(--text-secondary)] hover:text-[var(--gold)]">Daily</a>
-              <a href="/bookmarks" className="text-xs font-medium text-[var(--text-secondary)] hover:text-[var(--gold)]">⭐</a>
-            </div>
-          </div>
-        </div>
-      </nav>
-    </>
-  );
-}
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -97,7 +68,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             }),
           }}
         />
-        <Nav />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: 'U-God',
+              url: 'https://u-god.com',
+              logo: 'https://u-god.com/og-image.png',
+              description: 'A free sacred text platform connecting 25+ world religious traditions.',
+              sameAs: ['https://u-god.com'],
+            }),
+          }}
+        />
+        <NavClient />
 
         <main className="pt-14 sm:pt-16">{children}</main>
 
@@ -118,6 +103,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <a href="/library" className="block text-white/30 hover:text-white/60 transition-colors">Library</a>
                   <a href="/search" className="block text-white/30 hover:text-white/60 transition-colors">Search</a>
                   <a href="/daily" className="block text-white/30 hover:text-white/60 transition-colors">Daily Verse</a>
+                  <a href="/calendar" className="block text-white/30 hover:text-white/60 transition-colors">Calendar</a>
                   <a href="/about" className="block text-white/30 hover:text-white/60 transition-colors">About</a>
                 </div>
               </div>
@@ -132,7 +118,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </div>
               <div>
                 <h4 className="text-[10px] font-bold tracking-[0.2em] uppercase text-[var(--gold)] mb-4">Mission</h4>
-                <p className="text-sm text-white/30 leading-relaxed mb-4">Built with reverence by the Wu-Tang AI Clan.</p>
+                <p className="text-sm text-white/30 leading-relaxed mb-2">Built with reverence by the Wu-Tang AI Clan.</p>
+                <p className="text-xs text-white/20 leading-relaxed mb-4">&copy; {new Date().getFullYear()} U-God Sacred Library. Original curation &amp; design reserved. <a href="/terms" className="underline hover:text-white/40 transition-colors">Terms</a></p>
                 <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/3 border border-white/5">
                   <span>♾️</span>
                   <div>

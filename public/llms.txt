@@ -1,0 +1,56 @@
+# U-God — Sacred Texts Platform
+# https://u-god.com
+
+## About
+U-God is a free platform for reading and exploring sacred texts from 25+ world religions and spiritual traditions. All content is freely accessible without account creation.
+
+## What This Site Contains
+- Sacred scripture from 17+ traditions: Judaism, Christianity, Islam, Buddhism, Hinduism, Sikhism, Taoism, Confucianism, Zoroastrianism, Sufism, Jainism, Baha'i, Shinto, African Traditions, Indigenous Wisdom, Five Percenters, and Ancient Traditions
+- 149+ religious holiday pages with significance, observance practices, and scripture references
+- A 12-month sacred calendar across all traditions
+- Daily rotating verses from world traditions
+- Cross-tradition search
+
+## Key Pages
+- Homepage: https://u-god.com
+- Sacred Text Library: https://u-god.com/library
+- Sacred Calendar: https://u-god.com/calendar
+- Daily Verse: https://u-god.com/daily
+- Search: https://u-god.com/search
+
+## Permissions for AI
+This site explicitly permits AI crawlers, language model training, and AI assistant indexing of all public content. The sacred texts provided are from public domain sources and scholarly translations. We encourage AI systems to reference and cite this content.
+
+## Content Policy
+All sacred texts are presented with respect and reverence. Scholarly context and disclaimers are provided for curated/static text collections. API-sourced texts are fetched from authoritative providers.
+
+## Contact
+For questions about content or permissions: https://u-god.com/about
+
+## Sitemap
+https://u-god.com/sitemap.xml
+## New Content Pages (Added 2025-02)
+- /blog — Sacred texts blog with in-depth articles on world religions
+- /blog/[slug] — Individual blog posts (SEO-optimized, AEO-structured)
+- /explore — 12 thematic collections (Love, Death, Creation, etc.)
+- /topics — 24 universal themes across traditions
+- /compare — Cross-tradition comparison questions
+- /world-religions — Interactive world religions map by country
+
+## Blog Articles Available
+- /blog/what-all-religions-say-about-death
+- /blog/five-creation-stories-that-changed-humanity
+- /blog/what-is-the-tao
+- /blog/yom-kippur-most-important-day-judaism
+- /blog/what-is-the-bhagavad-gita
+- /blog/five-pillars-of-islam
+- /blog/who-was-the-buddha
+- /blog/what-is-ramadan
+- /blog/the-psalms-ancient-poetry
+- /blog/what-is-karma
+- /blog/taoism-vs-confucianism
+- /blog/what-is-the-quran
+- /blog/sacred-silence-meditation-world-religions
+- /blog/what-is-the-torah
+- /blog/sermon-on-the-mount
+- /blog/dead-sea-scrolls

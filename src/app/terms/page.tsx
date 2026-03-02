@@ -11,8 +11,8 @@ const copyrightSchema = {
   '@type': 'WebPage',
   name: 'Terms of Service — U-God Sacred Library',
   url: 'https://u-god.com/terms',
-  copyrightYear: 2025,
-  copyrightHolder: { '@type': 'Organization', name: 'U-God Sacred Library', url: 'https://u-god.com' },
+  copyrightYear: 2026,
+  copyrightHolder: { '@type': 'Organization', name: 'The Voice of Cash LLC', url: 'https://thevoiceofcash.com' },
   license: 'https://u-god.com/terms',
 };
 

@@ -28,8 +28,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const holidayPages: MetadataRoute.Sitemap = holidays.map(h => ({
     url: `${baseUrl}/holidays/${h.slug}`,
     lastModified: now,
-    changeFrequency: 'yearly' as const,
-    priority: 0.75,
+    changeFrequency: 'monthly' as const,
+    priority: 0.80,
   }));
 
   // Tradition pages
@@ -60,8 +60,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const blogPages: MetadataRoute.Sitemap = blogPosts.map(post => ({
     url: `${baseUrl}/blog/${post.slug}`,
     lastModified: now,
-    changeFrequency: 'yearly' as const,
-    priority: 0.80,
+    changeFrequency: 'weekly' as const,
+    priority: 0.85,
   }));
 
   return [...staticPages, ...traditionPages, ...bookPages, ...holidayPages, ...blogPages];

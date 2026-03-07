@@ -66,7 +66,15 @@ The Tibetan Book of the Dead (*Bardo Thodol*) describes the consciousness naviga
 
 Strip away the doctrinal differences and something remarkable emerges: every tradition insists that death is not the end, that how we live matters to what follows, and that the dead remain in some relationship with the living. The details differ enormously. The insistence is universal.
 
-Read the texts for yourself: the [Judaism library](/library/judaism), [Christianity library](/library/christianity), [Islam library](/library/islam), [Buddhism library](/library/buddhism), and [Hinduism library](/library/hinduism) are all here, free, and waiting.`,
+Read the texts for yourself: the [Judaism library](/library/judaism), [Christianity library](/library/christianity), [Islam library](/library/islam), [Buddhism library](/library/buddhism), and [Hinduism library](/library/hinduism) are all here, free, and waiting.
+
+---
+
+**Explore Further**
+
+- [Sacred Text Library](/library) — Browse thousands of passages from 25+ traditions
+- [Recommended Books & Resources](/resources) — Handpicked texts for sincere seekers
+- [Daily Sacred Verse](/daily) — One passage from the world's traditions, every day`,
   },
   {
     slug: 'five-creation-stories-that-changed-humanity',
@@ -124,7 +132,15 @@ This is not a primitive version of Genesis. It is a fundamentally different meta
 
 No creation story is just cosmology. Every one of them is answering the question: *What kind of universe are we in, and therefore how should we live?* The Genesis answer led to science and linear history. The Vedic answer led to philosophy and mysticism. The Taoist answer led to ecology and non-interference. The Lakota answer led to a land ethic three millennia ahead of its time.
 
-Read them all: [Ancient texts](/library/ancient), [Hinduism](/library/hinduism), [Taoism](/library/taoism), [Judaism](/library/judaism), [Indigenous traditions](/library/indigenous).`,
+Read them all: [Ancient texts](/library/ancient), [Hinduism](/library/hinduism), [Taoism](/library/taoism), [Judaism](/library/judaism), [Indigenous traditions](/library/indigenous).
+
+---
+
+**Explore Further**
+
+- [Sacred Text Library](/library) — Browse thousands of passages from 25+ traditions
+- [Recommended Books & Resources](/resources) — Handpicked texts for sincere seekers
+- [Daily Sacred Verse](/daily) — One passage from the world's traditions, every day`,
   },
   {
     slug: 'what-is-the-tao',
@@ -176,7 +192,15 @@ But the ecology movement, the mindfulness movement, complexity science, and syst
 
 The untranslatable word turns out to describe something very specific. You just have to stop trying to translate it and start reading it.
 
-[Read the Tao Te Ching and Zhuangzi in the Taoism library →](/library/taoism)`,
+[Read the Tao Te Ching and Zhuangzi in the Taoism library →](/library/taoism)
+
+---
+
+**Explore Further**
+
+- [Sacred Text Library](/library) — Browse thousands of passages from 25+ traditions
+- [Recommended Books & Resources](/resources) — Handpicked texts for sincere seekers
+- [Daily Sacred Verse](/daily) — One passage from the world's traditions, every day`,
   },
   {
     slug: 'yom-kippur-most-important-day-judaism',
@@ -267,7 +291,15 @@ The Gita has been carried into modern life by figures as different as Mahatma Ga
 
 Its core question — how do we act rightly in a world of moral complexity, without being paralyzed by the consequences? — has not aged a day.
 
-[Read Bhagavad Gita passages in the Hinduism library →](/library/hinduism)`,
+[Read Bhagavad Gita passages in the Hinduism library →](/library/hinduism)
+
+---
+
+**Explore Further**
+
+- [Sacred Text Library](/library) — Browse thousands of passages from 25+ traditions
+- [Recommended Books & Resources](/resources) — Handpicked texts for sincere seekers
+- [Daily Sacred Verse](/daily) — One passage from the world's traditions, every day`,
   },
   {
     slug: 'five-pillars-of-islam',
@@ -324,7 +356,15 @@ The Hajj is designed to be the experience of a lifetime — a physical, spiritua
 
 Together the Five Pillars structure time (daily prayer, annual Ramadan, once-in-a-lifetime Hajj), wealth (Zakat), and identity (Shahada). They are not separate practices but interlocking systems that shape a Muslim from morning to night, year to year, across an entire life.
 
-[Explore the Quran and Islamic texts in the library →](/library/islam)`,
+[Explore the Quran and Islamic texts in the library →](/library/islam)
+
+---
+
+**Explore Further**
+
+- [Sacred Text Library](/library) — Browse thousands of passages from 25+ traditions
+- [Recommended Books & Resources](/resources) — Handpicked texts for sincere seekers
+- [Daily Sacred Verse](/daily) — One passage from the world's traditions, every day`,
   },
   {
     slug: 'who-was-the-buddha',
@@ -382,7 +422,15 @@ For four decades, the Buddha walked the roads of northern India teaching anyone 
 
 He died at eighty, in Kushinagar, lying on his side between two trees. His last words, according to the Pali Canon: *"All conditioned things are impermanent. Work out your salvation with diligence."*
 
-[Read the Buddha's teachings in the Buddhism library →](/library/buddhism)`,
+[Read the Buddha's teachings in the Buddhism library →](/library/buddhism)
+
+---
+
+**Explore Further**
+
+- [Sacred Text Library](/library) — Browse thousands of passages from 25+ traditions
+- [Recommended Books & Resources](/resources) — Handpicked texts for sincere seekers
+- [Daily Sacred Verse](/daily) — One passage from the world's traditions, every day`,
   },
   {
     slug: 'what-is-ramadan',
@@ -428,7 +476,15 @@ Ramadan ends with Eid al-Fitr — the Festival of Breaking the Fast. It is one o
 
 The fast ends. The celebration begins. And for many Muslims, Ramadan's end is also tinged with genuine grief — at losing the heightened spiritual atmosphere that comes only once a year.
 
-[Explore the Ramadan holiday →](/holidays/ramadan) · [Read the Quran →](/library/islam)`,
+[Explore the Ramadan holiday →](/holidays/ramadan) · [Read the Quran →](/library/islam)
+
+---
+
+**Explore Further**
+
+- [Sacred Text Library](/library) — Browse thousands of passages from 25+ traditions
+- [Recommended Books & Resources](/resources) — Handpicked texts for sincere seekers
+- [Daily Sacred Verse](/daily) — One passage from the world's traditions, every day`,
   },
   {
     slug: 'the-psalms-ancient-poetry',
@@ -478,7 +534,15 @@ Poetry works differently than prose. It bypasses the argumentative mind and spea
 
 They work because they are true. Not literally true to any particular moment — but true to the range of what it feels like to be human, to believe, to doubt, to suffer, to celebrate, to face death.
 
-[Read the Psalms in the Judaism library →](/library/judaism)`,
+[Read the Psalms in the Judaism library →](/library/judaism)
+
+---
+
+**Explore Further**
+
+- [Sacred Text Library](/library) — Browse thousands of passages from 25+ traditions
+- [Recommended Books & Resources](/resources) — Handpicked texts for sincere seekers
+- [Daily Sacred Verse](/daily) — One passage from the world's traditions, every day`,
   },
   {
     slug: 'what-is-karma',
@@ -528,7 +592,15 @@ Both traditions agree that clinging and craving generate karma. But their soluti
 
 Despite philosophical differences, both traditions agree on practical ethics: intentional harmful action always has consequences, kindness and generosity create positive conditions, and the goal is ultimately to be free of the endless chain of cause and effect entirely.
 
-[Read the Bhagavad Gita →](/library/hinduism) · [Read the Buddhist texts →](/library/buddhism)`,
+[Read the Bhagavad Gita →](/library/hinduism) · [Read the Buddhist texts →](/library/buddhism)
+
+---
+
+**Explore Further**
+
+- [Sacred Text Library](/library) — Browse thousands of passages from 25+ traditions
+- [Recommended Books & Resources](/resources) — Handpicked texts for sincere seekers
+- [Daily Sacred Verse](/daily) — One passage from the world's traditions, every day`,
   },
   {
     slug: 'taoism-vs-confucianism',
@@ -578,7 +650,15 @@ In practice, the Chinese literati tradition absorbed both. A scholar-official mi
 
 This flexibility is itself very Chinese: pragmatic, syncretic, unwilling to force a single answer where multiple perspectives each illuminate something true.
 
-[Explore Taoist texts →](/library/taoism) · [Explore Confucian texts →](/library/confucianism)`,
+[Explore Taoist texts →](/library/taoism) · [Explore Confucian texts →](/library/confucianism)
+
+---
+
+**Explore Further**
+
+- [Sacred Text Library](/library) — Browse thousands of passages from 25+ traditions
+- [Recommended Books & Resources](/resources) — Handpicked texts for sincere seekers
+- [Daily Sacred Verse](/daily) — One passage from the world's traditions, every day`,
   },
   {
     slug: 'what-is-the-quran',
@@ -630,7 +710,15 @@ The Quran is not read the way most Westerners read books. It is recited, often a
 
 It is, for 1.8 billion people, not a text from the past but a living presence.
 
-[Read the Quran in the Islam library →](/library/islam)`,
+[Read the Quran in the Islam library →](/library/islam)
+
+---
+
+**Explore Further**
+
+- [Sacred Text Library](/library) — Browse thousands of passages from 25+ traditions
+- [Recommended Books & Resources](/resources) — Handpicked texts for sincere seekers
+- [Daily Sacred Verse](/daily) — One passage from the world's traditions, every day`,
   },
   {
     slug: 'sacred-silence-meditation-world-religions',
@@ -686,7 +774,15 @@ Across traditions, contemplative practice follows a similar arc: withdrawal from
 
 The forms are different. The invitation is the same: be still, and know.
 
-[Explore traditions with contemplative practices →](/library)`,
+[Explore traditions with contemplative practices →](/library)
+
+---
+
+**Explore Further**
+
+- [Sacred Text Library](/library) — Browse thousands of passages from 25+ traditions
+- [Recommended Books & Resources](/resources) — Handpicked texts for sincere seekers
+- [Daily Sacred Verse](/daily) — One passage from the world's traditions, every day`,
   },
   {
     slug: 'what-is-the-torah',
@@ -742,7 +838,15 @@ In Jewish tradition, studying Torah is not merely educational — it is a form o
 
 The tradition of *d'var Torah* ("word of Torah") — a teaching offered at Shabbat meals, lifecycle events, and study sessions — keeps the text alive as a living conversation across generations.
 
-[Read Torah texts in the Judaism library →](/library/judaism)`,
+[Read Torah texts in the Judaism library →](/library/judaism)
+
+---
+
+**Explore Further**
+
+- [Sacred Text Library](/library) — Browse thousands of passages from 25+ traditions
+- [Recommended Books & Resources](/resources) — Handpicked texts for sincere seekers
+- [Daily Sacred Verse](/daily) — One passage from the world's traditions, every day`,
   },
   {
     slug: 'sermon-on-the-mount',
@@ -811,7 +915,15 @@ This is not advice to be irresponsible. It is a call to trust — to live fully 
 
 The Sermon on the Mount has been called the most radical ethical document in history. It has also been called impractical, impossible, and designed to drive people to despair of their own ability and into dependence on grace. What it cannot be called is easy — or boring.
 
-[Read the Sermon on the Mount in the Christianity library →](/library/christianity)`,
+[Read the Sermon on the Mount in the Christianity library →](/library/christianity)
+
+---
+
+**Explore Further**
+
+- [Sacred Text Library](/library) — Browse thousands of passages from 25+ traditions
+- [Recommended Books & Resources](/resources) — Handpicked texts for sincere seekers
+- [Daily Sacred Verse](/daily) — One passage from the world's traditions, every day`,
   },
   {
     slug: 'dead-sea-scrolls',
@@ -1503,7 +1615,15 @@ The highest ideal in Jainism is the Tirthankara — a fully enlightened being wh
 
 This is a harder, more demanding vision of the good than most traditions offer. It is also, in its rigorous consistency, one of the most intellectually honest.
 
-[Explore Jain sacred texts →](/library/jainism)`,
+[Explore Jain sacred texts →](/library/jainism)
+
+---
+
+**Explore Further**
+
+- [Sacred Text Library](/library) — Browse thousands of passages from 25+ traditions
+- [Recommended Books & Resources](/resources) — Handpicked texts for sincere seekers
+- [Daily Sacred Verse](/daily) — One passage from the world's traditions, every day`,
   },
 ];
 

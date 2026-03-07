@@ -66,6 +66,7 @@ export default function NavClient() {
               <a href="/topics" className="nav-link">Topics</a>
               <a href="/compare" className="nav-link">Compare</a>
               <a href="/blog" className="nav-link">Blog</a>
+              <a href="/resources" className="nav-link">Books</a>
             </div>
 
             {/* Desktop right */}

@@ -146,6 +146,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
             </div>
 
+            {/* Our Network */}
+            <div className="border-t border-white/5 pt-6 mb-6">
+              <p className="text-[10px] font-bold tracking-[2px] uppercase text-[var(--gold)]/40 mb-3">Our Network</p>
+              <div className="flex flex-wrap gap-x-5 gap-y-2">
+                {[["The Voice of Cash","https://www.thevoiceofcash.com"],["WeBearish","https://www.webearish.com"],["JewSA","https://www.jewsa.com"],["AI Skills Agents","https://aiskillsagents.com"]].map(([label,href]) => (
+                  <a key={href} href={href} target="_blank" rel="noopener noreferrer" className="text-[11px] text-white/30 hover:text-white/60 font-semibold no-underline transition-colors">{label}</a>
+                ))}
+              </div>
+            </div>
+
             {/* Bottom bar */}
             <div className="border-t border-white/5 pt-6">
               <div className="flex flex-col md:flex-row justify-between items-center gap-3">

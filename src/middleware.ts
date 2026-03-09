@@ -2,13 +2,13 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 // Simple in-edge rate limiter for the search API
-// Uses a sliding window via response headers — stateless, works on Vercel Edge
+// Uses a sliding window via response headers - stateless, works on edge
 const RATE_LIMIT_WINDOW_MS = 60_000; // 1 minute
-const RATE_LIMIT_MAX = 30; // 30 requests/min per IP — human never hits this, scrapers do
+const RATE_LIMIT_MAX = 30; // 30 requests/min per IP - human never hits this, scrapers do
 
 // Known aggressive scraper/AI trainer user agents to block
 const BLOCKED_UA_PATTERNS = [
-  'CCBot',           // Common Crawl — feeds many AI training datasets
+  'CCBot',           // Common Crawl - feeds many AI training datasets
   'GPTBot',          // OpenAI training crawler (different from ChatGPT search)
   'Google-Extended', // Google Bard/Gemini training (we allow indexing but not training)
   'anthropic-ai',    // Anthropic training (we allow Claude search, not training scrapes)
@@ -82,7 +82,7 @@ export function middleware(request: NextRequest) {
 
   // Add copyright headers to all responses
   const response = NextResponse.next();
-  response.headers.set('X-Content-Owner', 'U-God Sacred Library — https://u-god.com');
+  response.headers.set('X-Content-Owner', 'U-God Sacred Library - https://u-god.com');
   response.headers.set('X-License', 'All original content © U-God. See https://u-god.com/terms');
 
   return response;

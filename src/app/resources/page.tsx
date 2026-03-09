@@ -13,49 +13,49 @@ const categories = [
   {
     name: 'Judaism', emoji: '✡️', color: '#1a3a6b',
     books: [
-      { title: 'The Koren Talmud Bavli', desc: 'The most accessible English Talmud translation. Essential for serious study.', link: 'https://www.amazon.com/s?k=koren+talmud+bavli&tag=ugod-20', price: '$39+' },
-      { title: 'To Be a Jew — Rabbi Hayim Donin', desc: 'The definitive guide to Jewish practice for modern life.', link: 'https://www.amazon.com/s?k=to+be+a+jew+donin&tag=ugod-20', price: '$18' },
-      { title: 'The Jewish Study Bible', desc: 'Tanakh translation with scholarly commentary. Used in universities worldwide.', link: 'https://www.amazon.com/s?k=jewish+study+bible&tag=ugod-20', price: '$45' },
+      { title: 'The Koren Talmud Bavli', desc: 'The most accessible English Talmud translation. Essential for serious study.', link: 'https://www.amazon.com/s?k=koren+talmud+bavli&tag=theclantv20-20', price: '$39+' },
+      { title: 'To Be a Jew — Rabbi Hayim Donin', desc: 'The definitive guide to Jewish practice for modern life.', link: 'https://www.amazon.com/s?k=to+be+a+jew+donin&tag=theclantv20-20', price: '$18' },
+      { title: 'The Jewish Study Bible', desc: 'Tanakh translation with scholarly commentary. Used in universities worldwide.', link: 'https://www.amazon.com/s?k=jewish+study+bible&tag=theclantv20-20', price: '$45' },
     ],
   },
   {
     name: 'Islam', emoji: '☪️', color: '#1a4a2e',
     books: [
-      { title: 'The Study Quran — Seyyed Nasr', desc: 'The most comprehensive English Quran with traditional commentary.', link: 'https://www.amazon.com/s?k=study+quran+nasr&tag=ugod-20', price: '$55' },
-      { title: 'In the Footsteps of the Prophet — Tariq Ramadan', desc: 'A modern biography of the Prophet Muhammad accessible to all readers.', link: 'https://www.amazon.com/s?k=footsteps+prophet+ramadan&tag=ugod-20', price: '$16' },
-      { title: 'The Heart of Islam — Seyyed Nasr', desc: 'Core values, compassion, and beauty in Islamic teaching.', link: 'https://www.amazon.com/s?k=heart+of+islam+nasr&tag=ugod-20', price: '$17' },
+      { title: 'The Study Quran — Seyyed Nasr', desc: 'The most comprehensive English Quran with traditional commentary.', link: 'https://www.amazon.com/s?k=study+quran+nasr&tag=theclantv20-20', price: '$55' },
+      { title: 'In the Footsteps of the Prophet — Tariq Ramadan', desc: 'A modern biography of the Prophet Muhammad accessible to all readers.', link: 'https://www.amazon.com/s?k=footsteps+prophet+ramadan&tag=theclantv20-20', price: '$16' },
+      { title: 'The Heart of Islam — Seyyed Nasr', desc: 'Core values, compassion, and beauty in Islamic teaching.', link: 'https://www.amazon.com/s?k=heart+of+islam+nasr&tag=theclantv20-20', price: '$17' },
     ],
   },
   {
     name: 'Christianity', emoji: '✝️', color: '#3a1a1a',
     books: [
-      { title: 'The New Oxford Annotated Bible', desc: 'Scholarly NRSV translation with extensive historical and cultural notes.', link: 'https://www.amazon.com/s?k=new+oxford+annotated+bible&tag=ugod-20', price: '$49' },
-      { title: 'Mere Christianity — C.S. Lewis', desc: 'The most widely read Christian apologetic of the 20th century.', link: 'https://www.amazon.com/s?k=mere+christianity+cs+lewis&tag=ugod-20', price: '$14' },
-      { title: 'The Cost of Discipleship — Bonhoeffer', desc: 'What it actually means to follow Christ. Profound and challenging.', link: 'https://www.amazon.com/s?k=cost+of+discipleship+bonhoeffer&tag=ugod-20', price: '$15' },
+      { title: 'The New Oxford Annotated Bible', desc: 'Scholarly NRSV translation with extensive historical and cultural notes.', link: 'https://www.amazon.com/s?k=new+oxford+annotated+bible&tag=theclantv20-20', price: '$49' },
+      { title: 'Mere Christianity — C.S. Lewis', desc: 'The most widely read Christian apologetic of the 20th century.', link: 'https://www.amazon.com/s?k=mere+christianity+cs+lewis&tag=theclantv20-20', price: '$14' },
+      { title: 'The Cost of Discipleship — Bonhoeffer', desc: 'What it actually means to follow Christ. Profound and challenging.', link: 'https://www.amazon.com/s?k=cost+of+discipleship+bonhoeffer&tag=theclantv20-20', price: '$15' },
     ],
   },
   {
     name: 'Buddhism', emoji: '☸️', color: '#3a2a0a',
     books: [
-      { title: "In the Buddha's Words — Bhikkhu Bodhi", desc: 'Direct translations from the Pali Canon. The most authoritative anthology.', link: 'https://www.amazon.com/s?k=in+the+buddhas+words+bodhi&tag=ugod-20', price: '$22' },
-      { title: "The Heart of the Buddha's Teaching — Thich Nhat Hanh", desc: 'Accessible introduction to Buddhist practice for modern readers.', link: 'https://www.amazon.com/s?k=heart+of+buddhas+teaching+thich&tag=ugod-20', price: '$16' },
-      { title: 'Why Buddhism is True — Robert Wright', desc: 'The science behind mindfulness and Buddhist philosophy.', link: 'https://www.amazon.com/s?k=why+buddhism+is+true+wright&tag=ugod-20', price: '$15' },
+      { title: "In the Buddha's Words — Bhikkhu Bodhi", desc: 'Direct translations from the Pali Canon. The most authoritative anthology.', link: 'https://www.amazon.com/s?k=in+the+buddhas+words+bodhi&tag=theclantv20-20', price: '$22' },
+      { title: "The Heart of the Buddha's Teaching — Thich Nhat Hanh", desc: 'Accessible introduction to Buddhist practice for modern readers.', link: 'https://www.amazon.com/s?k=heart+of+buddhas+teaching+thich&tag=theclantv20-20', price: '$16' },
+      { title: 'Why Buddhism is True — Robert Wright', desc: 'The science behind mindfulness and Buddhist philosophy.', link: 'https://www.amazon.com/s?k=why+buddhism+is+true+wright&tag=theclantv20-20', price: '$15' },
     ],
   },
   {
     name: 'Hinduism', emoji: '🕉️', color: '#4a1a0a',
     books: [
-      { title: 'The Bhagavad Gita — Eknath Easwaran', desc: 'The most beloved English translation. Clear, poetic, and deeply readable.', link: 'https://www.amazon.com/s?k=bhagavad+gita+easwaran&tag=ugod-20', price: '$14' },
-      { title: 'The Upanishads — Eknath Easwaran', desc: 'Core philosophical texts of Hindu thought in accessible translation.', link: 'https://www.amazon.com/s?k=upanishads+easwaran&tag=ugod-20', price: '$16' },
-      { title: 'The Yoga Sutras — Patanjali (Satchidananda)', desc: 'Classical text on the philosophy and practice of yoga.', link: 'https://www.amazon.com/s?k=yoga+sutras+satchidananda&tag=ugod-20', price: '$13' },
+      { title: 'The Bhagavad Gita — Eknath Easwaran', desc: 'The most beloved English translation. Clear, poetic, and deeply readable.', link: 'https://www.amazon.com/s?k=bhagavad+gita+easwaran&tag=theclantv20-20', price: '$14' },
+      { title: 'The Upanishads — Eknath Easwaran', desc: 'Core philosophical texts of Hindu thought in accessible translation.', link: 'https://www.amazon.com/s?k=upanishads+easwaran&tag=theclantv20-20', price: '$16' },
+      { title: 'The Yoga Sutras — Patanjali (Satchidananda)', desc: 'Classical text on the philosophy and practice of yoga.', link: 'https://www.amazon.com/s?k=yoga+sutras+satchidananda&tag=theclantv20-20', price: '$13' },
     ],
   },
   {
     name: 'Interfaith & Comparative', emoji: '🌍', color: '#1a2a4a',
     books: [
-      { title: "The World's Religions — Huston Smith", desc: 'The gold standard introduction to world religions. Respectful and thorough.', link: 'https://www.amazon.com/s?k=worlds+religions+huston+smith&tag=ugod-20', price: '$17' },
-      { title: 'God Is Not One — Stephen Prothero', desc: "Why the world's religions are genuinely different and why that matters.", link: 'https://www.amazon.com/s?k=god+is+not+one+prothero&tag=ugod-20', price: '$16' },
-      { title: 'The Perennial Philosophy — Aldous Huxley', desc: 'The common mystical thread across all major traditions.', link: 'https://www.amazon.com/s?k=perennial+philosophy+huxley&tag=ugod-20', price: '$18' },
+      { title: "The World's Religions — Huston Smith", desc: 'The gold standard introduction to world religions. Respectful and thorough.', link: 'https://www.amazon.com/s?k=worlds+religions+huston+smith&tag=theclantv20-20', price: '$17' },
+      { title: 'God Is Not One — Stephen Prothero', desc: "Why the world's religions are genuinely different and why that matters.", link: 'https://www.amazon.com/s?k=god+is+not+one+prothero&tag=theclantv20-20', price: '$16' },
+      { title: 'The Perennial Philosophy — Aldous Huxley', desc: 'The common mystical thread across all major traditions.', link: 'https://www.amazon.com/s?k=perennial+philosophy+huxley&tag=theclantv20-20', price: '$18' },
     ],
   },
 ];

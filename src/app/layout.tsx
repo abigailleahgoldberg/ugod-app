@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import NavClient from '@/components/NavClient';
 import './globals.css';
+import Script from 'next/script';
 
 export const metadata: Metadata = {
   title: {
@@ -170,6 +171,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
         </footer>
       </body>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-F57Z8Y9DFL"
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-F57Z8Y9DFL');
+          `}
+        </Script>
     </html>
   );
 }

@@ -119,19 +119,19 @@ export default async function HolidayPage({ params }: Props) {
               className="inline-flex items-center gap-1.5 text-sm font-semibold px-3 py-1 rounded-full border border-white/20 text-white/70 hover:text-white hover:border-white/40 transition-colors"
               style={{ borderColor: `${trad?.color}60` }}
             >
-              {trad?.emoji} {holiday.tradition}
+              {holiday.tradition}
             </Link>
           </div>
           <h1 className="font-display text-3xl sm:text-5xl font-bold text-white mb-4">{holiday.name}</h1>
           <p className="text-white/50 text-base sm:text-lg max-w-xl mx-auto mb-4">{holiday.description}</p>
           <div className="flex flex-wrap justify-center gap-2 text-sm">
             <span className="px-3 py-1 rounded-full bg-white/10 text-white/70 border border-white/10">
-              📅 {MONTH_NAMES[holiday.month - 1]} {holiday.day}
+              <svg width="14" height="14" viewBox="0 0 20 20" fill="none" style={{ display: 'inline', verticalAlign: 'middle', marginRight: '4px' }}><rect x="2" y="4" width="16" height="14" rx="2" stroke="currentColor" strokeWidth="1.5"/><path d="M2 8h16M6 2v4M14 2v4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>{MONTH_NAMES[holiday.month - 1]} {holiday.day}
               {holiday.duration && holiday.duration > 1 ? ` – ${holiday.duration} days` : ''}
             </span>
             {holiday.isLunar && (
               <span className="px-3 py-1 rounded-full bg-amber-500/20 text-amber-200 border border-amber-400/30">
-                🌙 Lunar calendar
+                Lunar calendar
               </span>
             )}
           </div>

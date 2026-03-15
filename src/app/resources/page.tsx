@@ -83,7 +83,7 @@ export default function ResourcesPage() {
         {categories.map((cat) => (
           <div key={cat.name} style={{ marginBottom: 56 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 24 }}>
-              <span style={{ fontSize: 32 }}>{cat.emoji}</span>
+              <div style={{ width: 16, height: 16, borderRadius: '50%', background: cat.color, flexShrink: 0, border: '2px solid rgba(0,0,0,0.2)' }} />
               <h2 style={{ fontSize: 28, fontWeight: 900, color: cat.color, margin: 0 }}>{cat.name}</h2>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(300px,1fr))', gap: 16 }}>

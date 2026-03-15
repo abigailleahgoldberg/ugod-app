@@ -26,7 +26,7 @@ export default function CalendarPage() {
       {/* Hero */}
       <section className="hero-gradient py-16 sm:py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-          <div className="text-5xl mb-4">📅</div>
+          <div className="mb-4 flex justify-center"><svg width="48" height="48" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="14" rx="2" stroke="currentColor" strokeWidth="1.5"/><path d="M2 8h16M6 2v4M14 2v4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg></div>
           <h1 className="font-display text-3xl sm:text-5xl font-bold text-white mb-3">
             Sacred Calendar
           </h1>
@@ -36,7 +36,7 @@ export default function CalendarPage() {
           <div className="flex flex-wrap justify-center gap-2 mt-6">
             {calendarTraditions.slice(0,8).map(t => (
               <span key={t.key} className="text-sm px-3 py-1 rounded-full bg-white/10 text-white/70 border border-white/10">
-                {t.emoji} {t.name}
+                {t.name}
               </span>
             ))}
             <span className="text-sm px-3 py-1 rounded-full bg-white/10 text-white/70 border border-white/10">
@@ -56,7 +56,7 @@ export default function CalendarPage() {
               className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full border border-gray-200 hover:border-[var(--gold)] transition-colors bg-white"
             >
               <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: t.color }} />
-              <span className="text-[var(--text-secondary)]">{t.emoji} {t.name}</span>
+              <span className="text-[var(--text-secondary)]">{t.name}</span>
             </Link>
           ))}
         </div>

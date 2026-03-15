@@ -1799,6 +1799,194 @@ The geometry was always there. The traditions kept finding it.
 - [Sacred Text Library](/library) — Browse thousands of passages from 25+ traditions
 - [Daily Sacred Verse](/daily) — One passage from the world's traditions, every day`,
   },
+  {
+    slug: 'what-every-major-religion-says-about-forgiveness',
+    title: 'What Every Major Religion Says About Forgiveness',
+    description: 'From Christian grace to Buddhist metta, from Islamic tawbah to Hindu prayaschitta. Every tradition wrestles with forgiveness. Here is what they teach.',
+    seoTitle: 'What Every Religion Says About Forgiveness | U-God',
+    seoDescription: 'From Christian grace to Buddhist metta, from Islamic tawbah to Hindu prayaschitta. How every major tradition approaches forgiveness.',
+    date: 'March 14, 2026',
+    readTime: '9 min read',
+    category: 'Comparative Theology',
+    categoryColor: '#D4AF37',
+    emoji: '',
+    traditions: ['christianity', 'islam', 'judaism', 'buddhism', 'hinduism'],
+    content: `Forgiveness is one of the few concepts that appears in every major religious tradition on earth. Not as a footnote. As a central teaching. The details vary, the mechanisms differ, but the core insight is remarkably consistent: holding onto resentment damages the one who holds it more than the one who caused it.
+
+**Christianity: Grace as Gift**
+
+Christian forgiveness centers on grace, the idea that forgiveness is not earned but given freely. The model is God forgiving humanity through the sacrifice of Christ, and the expectation is that Christians extend the same unconditional forgiveness to others.
+
+Jesus taught it directly: "For if you forgive other people when they sin against you, your heavenly Father will also forgive you" (Matthew 6:14). The parable of the unforgiving servant makes it even more pointed. A man forgiven an enormous debt refuses to forgive a small one, and the consequences are severe.
+
+The radical element in Christian forgiveness is its unconditional nature. You do not forgive because the other person deserves it. You forgive because you were forgiven first.
+
+**Islam: Tawbah and Divine Mercy**
+
+In Islam, forgiveness operates on two levels: seeking forgiveness from God (tawbah, repentance) and forgiving other people (afw).
+
+The Quran emphasizes God as Al-Ghafur (The All-Forgiving) and Ar-Rahman (The Most Merciful). "Say: O My servants who have transgressed against themselves, do not despair of the mercy of Allah. Indeed, Allah forgives all sins" (Quran 39:53).
+
+Human-to-human forgiveness is highly valued. "Let them pardon and overlook. Would you not like that Allah should forgive you?" (Quran 24:22). The Prophet Muhammad taught that forgiving others is a sign of strength, not weakness.
+
+**Judaism: Teshuvah as Return**
+
+Jewish forgiveness is structured around teshuvah, which literally means "return." It is not simply saying sorry. It involves recognizing the wrong, feeling genuine remorse, confessing the wrong, making restitution where possible, and committing to not repeating the behavior.
+
+Yom Kippur, the Day of Atonement, is dedicated entirely to this process. But Jewish tradition makes a crucial distinction: God can forgive sins against God, but sins against another person can only be forgiven by that person. You must go to the one you wronged and ask directly.
+
+**Buddhism: Metta and Letting Go**
+
+Buddhist forgiveness is less about the relationship between wrongdoer and wronged and more about the internal state of the person who was harmed. Holding onto anger is compared to holding a hot coal intending to throw it at someone else. You are the one getting burned.
+
+The practice of metta (loving-kindness) meditation explicitly includes directing compassion toward those who have caused harm. Not because they deserve it, but because resentment is a form of suffering that you can choose to release.
+
+**Hinduism: Kshama as Virtue**
+
+In Hinduism, forgiveness (kshama) is listed among the highest virtues. The Mahabharata states: "Forgiveness is virtue; forgiveness is sacrifice; forgiveness is the Vedas; forgiveness is the Shruti." The concept is woven into dharma as a fundamental duty.
+
+The Bhagavad Gita frames attachment to outcomes, including attachment to being wronged, as a source of suffering. Forgiveness is part of detachment from the ego-driven need for retribution.
+
+**The Common Thread**
+
+Every tradition arrives at the same practical conclusion through different theological routes: forgiveness is primarily for the forgiver. Whether framed as divine command, spiritual discipline, ethical duty, or psychological liberation, the act of releasing resentment is consistently taught as essential to human flourishing.
+
+The mechanism differs. The destination is the same.`,
+  },
+  {
+    slug: 'sacred-spaces-how-faiths-design-houses-of-worship',
+    title: 'Sacred Spaces: How Different Faiths Design Their Houses of Worship',
+    description: 'From the soaring nave of a cathedral to the stark simplicity of a Quaker meeting house. How architecture serves the divine across traditions.',
+    seoTitle: 'Sacred Spaces: How Religions Design Worship | U-God',
+    seoDescription: 'From cathedral naves to mosque domes to temple mandirs. How architecture serves the divine across world religions.',
+    date: 'March 14, 2026',
+    readTime: '8 min read',
+    category: 'Architecture & Faith',
+    categoryColor: '#8b7355',
+    emoji: '',
+    traditions: ['christianity', 'islam', 'judaism', 'buddhism', 'hinduism', 'sikhism'],
+    content: `Every religion builds. And how they build reveals what they believe about the relationship between humans and the divine.
+
+A Gothic cathedral lifts your eyes upward. A mosque empties the center. A Buddhist temple grounds you in stillness. None of this is accidental. Sacred architecture is theology made physical.
+
+**Christianity: Vertical Aspiration**
+
+The Christian church, particularly in its Catholic and Orthodox expressions, is designed to lift. Gothic cathedrals use pointed arches, ribbed vaults, and flying buttresses to create impossible height. The nave draws the eye forward toward the altar and upward toward the heavens.
+
+Stained glass transforms light itself into scripture. The rose window is not decoration. It is a teaching tool for a congregation that could not read. Every panel tells a story. Every color carries meaning.
+
+The cross-shaped floor plan of traditional churches is itself a symbol. You are literally standing inside the central image of the faith.
+
+**Islam: Emptied for God**
+
+The mosque is defined by what it removes. No figurative images. No statues. No representational art. The space is emptied so that nothing competes with God for the worshipper's attention.
+
+The mihrab (niche) indicates the direction of Mecca. The minbar (pulpit) elevates the Friday sermon. The dome creates a sense of cosmic enclosure. But the floor is where the action happens. Muslims pray shoulder to shoulder, forehead to ground, in rows that erase social hierarchy.
+
+The geometric patterns that cover mosque walls and ceilings are mathematical expressions of divine order. Infinite patterns suggest the infinite nature of God without ever depicting God directly.
+
+**Judaism: Community Over Spectacle**
+
+The synagogue is oriented toward Jerusalem, but its design is fundamentally communal. The bimah (reading platform) is often in the center of the congregation, not elevated above it. The Torah scroll is the focal point, housed in the Aron Kodesh (Holy Ark).
+
+Synagogue architecture has always been adaptive. There is no single required style. From the ornate Moorish designs of 19th-century Europe to the brutalist concrete of modern Israel, the synagogue adapts to its cultural context while maintaining the essential elements: a place for the Torah, a place for the congregation, orientation toward Jerusalem.
+
+**Buddhism: Stillness Made Physical**
+
+Buddhist temple design varies enormously across cultures, but the common thread is an invitation to stillness. Japanese Zen temples use negative space and natural materials. Thai wats use elaborate gold and glass to create overwhelming beauty. Tibetan gompas sit at high altitude, where the thin air and vast landscape become part of the practice.
+
+The Buddha statue is present not as an idol but as a reminder. The meditation hall is designed for sitting. Everything supports the practice of turning inward.
+
+**Hinduism: The Universe in Miniature**
+
+The Hindu mandir is designed as a model of the cosmos. The garbhagriha (inner sanctum) represents the center of creation. The shikhara (tower) rises above it as Mount Meru, the axis of the universe. Moving through the temple is moving through levels of reality toward the divine.
+
+The abundance of sculpture on Hindu temples is not ornamental. Every figure, every narrative panel, every carved detail teaches. The temple exterior is a textbook of mythology, philosophy, and cosmology.
+
+**Sikhism: Radical Equality**
+
+The Gurdwara has four doors, one on each side, symbolizing openness to all four directions and all four castes. The langar (community kitchen) feeds everyone who comes, regardless of faith, status, or wealth. The architecture embodies the Sikh commitment to radical equality.
+
+The Harmandir Sahib (Golden Temple) in Amritsar sits in the middle of a reflective pool, approached by a bridge. The building is lower than the surrounding walkway. You step down to enter. Humility is built into the approach.
+
+**What Architecture Reveals**
+
+The buildings we make for God reveal what we think God wants from us. Height or humility. Emptiness or abundance. Solitude or community. Each tradition answers differently. Each answer is visible in stone, wood, glass, and gold.`,
+  },
+  {
+    slug: 'the-golden-rule-across-religions',
+    title: 'The Golden Rule Across Religions: One Principle, Many Traditions',
+    description: 'Every major religion has its own version of the Golden Rule. The wording changes. The principle does not.',
+    seoTitle: 'The Golden Rule Across All Religions | U-God',
+    seoDescription: 'Every major religion has its own version of the Golden Rule. The wording changes. The principle does not.',
+    date: 'March 14, 2026',
+    readTime: '7 min read',
+    category: 'Comparative Ethics',
+    categoryColor: '#2a5db0',
+    emoji: '',
+    traditions: ['christianity', 'islam', 'judaism', 'buddhism', 'hinduism', 'confucianism', 'taoism', 'sikhism', 'jainism', 'zoroastrianism'],
+    content: `If there is one ethical principle that appears in every major religious and philosophical tradition on earth, it is this: treat others as you would want to be treated. The Golden Rule, in one form or another, shows up everywhere. Not borrowed. Not copied. Independently arrived at, across cultures that never met, across centuries that never overlapped.
+
+This is either a remarkable coincidence or evidence that certain moral truths are wired into human consciousness. Either way, the pattern is undeniable.
+
+**Christianity**
+"So in everything, do to others what you would have them do to you, for this sums up the Law and the Prophets." (Matthew 7:12)
+
+Jesus presents this not as one rule among many, but as the summary of all religious law. Everything else, he suggests, is commentary.
+
+**Judaism**
+"What is hateful to you, do not do to your neighbor. That is the whole Torah; the rest is commentary. Go and study it." (Hillel, Talmud, Shabbat 31a)
+
+Rabbi Hillel, asked to explain the entire Torah while standing on one foot, gave this answer. The negative formulation ("do not do") is deliberate. It emphasizes restraint and awareness of harm.
+
+**Islam**
+"None of you truly believes until he wishes for his brother what he wishes for himself." (Hadith, Sahih al-Bukhari)
+
+The Prophet Muhammad ties the Golden Rule directly to the quality of faith itself. It is not optional ethical advice. It is a test of belief.
+
+**Buddhism**
+"Hurt not others in ways that you yourself would find hurtful." (Udanavarga 5:18)
+
+The Buddha frames it in terms of suffering, consistent with the Four Noble Truths. The goal is the reduction of harm, and the method is empathy: use your own experience of pain as a guide for how to treat others.
+
+**Hinduism**
+"This is the sum of duty: do not do to others what would cause pain if done to you." (Mahabharata 5:1517)
+
+From the longest epic poem in human history, this single line captures what the tradition considers the essence of dharmic behavior.
+
+**Confucianism**
+"Do not impose on others what you do not wish for yourself." (Analects 15:23)
+
+Confucius was asked if there was one word that could serve as a principle for life. His answer was "shu," reciprocity. This is the practical expression.
+
+**Taoism**
+"Regard your neighbor's gain as your own gain, and your neighbor's loss as your own loss." (Tai Shang Kan Ying Pian)
+
+The Taoist version extends beyond action to perception. Do not just behave differently. See differently. Your neighbor's fortune is your fortune.
+
+**Sikhism**
+"I am a stranger to no one, and no one is a stranger to me. Indeed, I am a friend to all." (Guru Granth Sahib, p. 1299)
+
+The Sikh formulation goes beyond behavior to identity. The stranger does not exist. Everyone is already family.
+
+**Jainism**
+"One should treat all creatures in the world as one would like to be treated." (Mahavira, Sutrakritanga)
+
+Jainism extends the principle beyond humans to all living creatures, consistent with its foundational commitment to ahimsa (non-violence).
+
+**Zoroastrianism**
+"That nature alone is good which refrains from doing to another whatsoever is not good for itself." (Dadistan-I-dinik 94:5)
+
+One of the oldest formulations, from one of the oldest monotheistic traditions. The principle predates most of the others on this list by centuries.
+
+**What the Pattern Means**
+
+Ten traditions. Ten formulations. Zero evidence of direct borrowing between most of them. The Golden Rule was not invented once and spread. It was discovered repeatedly, independently, by human beings reflecting on the nature of ethical life.
+
+Some scholars argue this is evidence of a universal moral sense. Others argue it is simply practical: societies that practice reciprocity survive longer than those that do not. Both may be true simultaneously.
+
+What is certain is this: if you are looking for common ground between the world's religions, you do not have to look far. The foundation was always there. The words change. The principle does not.`,
+  },
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {

@@ -109,6 +109,17 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           <Link href="/blog" className="text-sm text-[var(--gold)] hover:opacity-80 transition-opacity font-medium">← All posts</Link>
           <Link href="/search" className="text-sm text-[var(--text-muted)] hover:text-[var(--gold)] transition-colors">Search the library →</Link>
         </div>
+
+        {/* Faith Network Section */}
+        <div className="mt-12 pt-8 border-t border-gray-100">
+          <p className="text-xs font-bold tracking-widest uppercase text-[var(--text-muted)] mb-4">Faith Network</p>
+          <div className="flex flex-col gap-3">
+            <a href="https://jewsa.com" className="text-sm text-[var(--gold)] hover:opacity-80 transition-opacity"><strong>JewSA.com</strong> — Jewish-American culture, pride, and community resources</a>
+            <a href="https://redwhitejesus.com" className="text-sm text-[var(--gold)] hover:opacity-80 transition-opacity"><strong>RedWhiteJesus.com</strong> — Christian faith meeting American culture</a>
+            <a href="https://allahican.com" className="text-sm text-[var(--gold)] hover:opacity-80 transition-opacity"><strong>AllahICan.com</strong> — Islamic guidance and community for modern American Muslims</a>
+            <a href="https://hindusa.com" className="text-sm text-[var(--gold)] hover:opacity-80 transition-opacity"><strong>HindUSA.com</strong> — Hindu-American pride, traditions, and culture</a>
+          </div>
+        </div>
       </article>
     </div>
   );
